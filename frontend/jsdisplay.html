@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바 스크립트로 출력하기</title>
+    <script>
+        document.write("<p>안녕고양이</p>");
+        // alert("안녕");
+        console.log("여깃지롱");
+        
+        hi = 100;
+        function get() {
+            console.log(hi);
+            he = 400;
+            var ho = 200;
+        }
+        // console.log(hi);
+        // get();
+        // console.log(he); // 키워드 없이 이름을 만들어 함수가 호출된 이후에
+        // // 어느곳에서든지 사용이 가능한 global이 되어버림
+        // console.log(ho); // 키워드와 함께 만들어져서 자신의 영역에서만 사용이 가능
+
+        var data = 10;
+        console.log("data: " + data);
+        
+        data = 20;
+        {   
+            // 기존 데이터의 값을 변경하는 것이 아니고 새로운 영역에 data 만들어
+            // 여러 블럭에 동일한 이름이 여러개 존재하면 자신의 블럭에서 가까운 블럭에 만든 것을 우선시
+            let data = 30;
+            console.log("data: " + data);
+        }
+        console.log("data: " + data); // 이전 내부 블럭이 없다고 보면
+        // let 대신 var 사용하면 내부 블럭에서 외부 블럭의 데이터 호출 가능
+
+        const con = 1000;
+        // con = 2000; // 오류
+
+        let x = 1.0;
+        let y = 0.8;
+        let answer = x-y;
+        console.log(x + " - " + y + " = " + answer);
+
+    </script>
+</head>
+<body>
+</body>
+</html>
