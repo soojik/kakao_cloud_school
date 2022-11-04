@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>리스트 태그</title>
+        <style>
+            li {
+                color:blue
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--인식 안됨-->
+        <!-- <script>
+            document.getElementById("content").innerHTML = "JavaScript";
+        </script> -->
+        <ul>
+            <li>Front End</li>
+            <li>Back End</li>
+            <li>DevOps & MLOps</li>
+        </ul>
+        <div id="content">
+
+        </div>
+
+        <!--순차적으로 접근하기때문에 밑의 script 태그를 위로 올리면 "content" 라는 id를 인식을 못해서 안뜬다.-->
+        <script>
+            document.getElementById("content").innerHTML = "JavaScript";
+        </script>
+    </body>
+
+</html>

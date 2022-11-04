@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head lang="ko">
+        <meta charset="utf-8">
+        <title>폼 태그</title>
+    </head>
+
+    <body>
+        <img src="./cat.jpeg" alt="no image" width="500">
+        <form action="serverurl" method="post">
+            <!--이렇게 label 태그 안에 input 태그 설정하면 label 값 "이름"을 선택해도 텍스트 입력할 상태 완-->
+            <label>이름
+                <input type="text"/>
+            </label>
+            <label>비밀번호
+                <input type="password"/>
+            </label>
+
+            <fieldset>
+                <legend>강아지? 고양이?</legend>
+                <!--name을 설정하면 하나의 그룹이 되고 서버가 읽을 때는 value 값을 읽는다.-->
+                <input type="radio" name="catOrDog" value="dog" checked="checked">강아지
+                <input type="radio" name="catOrDog" value="cat">고양이
+            </fieldset>
+
+            <label>
+                <!--뒤에 따로 텍스트 붙이면 그냥 .. 텍스트 붙인 사람 되는거임
+                    기본 파일 제출 버튼 이름은 파일 선택 바꿀 수 잇나?-->
+                <input type="file" name="file" id="file">
+            </label>
+
+            <!--해당 버튼의 기능 정의 필요 -->
+            <input type="button" name="btn_func" id="btn_func" value="버튼">
+            <!--폼의 데이터를 서버에 전송할 때-->
+            <input type="submit" name="btn_submit" id="btn_submit" value="전송">
+            <!--폼의 데이터 초기화-->
+            <input type="reset" name="btn_reset" id="btn_reset" value="취소">
+            <!--눈에 보이진 않지만 서버에 데이터 전송할 수 있다.
+                서버 애플리케이션과 클라이언트 애플리케이션을 하나로 만들어 템플릿 엔진을 이용해 출력을 한다면 이 속성 꽤나 중요
+                따로 만들면 뭐 .. -->
+            <input type="hidden" name="hidden" id="hidden" value="숨김">
+
+            <br> <br>
+
+            <!--줄바꿈을 하면 커서의 시작 위치가 마음대로 가운데에 올 수 있기 때문에 최대한 없이 하는게 좋음
+                태그 안에 텍스트 작성해 초기값 설정 가능함-->
+            <textarea name="textarea" id="" cols="30" rows="10"></textarea>
+
+            <br> <br>
+
+            <select name="수량" id="select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>floating 실습</title>
+
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                background-color: yellow;
+                float: left;
+                resize: both;
+            }
+
+            #block1:active {
+                border: 3px solid darkolivegreen;
+            }
+            
+            #block2:hover {
+                border: 3px solid darkolivegreen;
+            }
+
+            #btn {
+                border: solid orange;
+                background-color: orange;
+                box-shadow: 0.1em 0.1em 0.1em grey;
+            }
+
+            #btn:active {
+                color: white;
+                box-shadow: 0 0 0;
+            }
+
+            a {
+                display: block;
+            }
+            
+        </style>
+    </head>
+    <body>
+       <div id="block1">블록1</div> 
+       <div id="block2">블록2</div> 
+       <div id="block3">블록3</div>
+
+       <button id="btn" name="btn" type="button">버튼~!</button>
+
+        <a href="https://data.go.kr">공공 데이터 포털</a>
+        <a href="https://developer.kakao.com">카카오 개발자 포럼</a>
+    </body>
+</html>
