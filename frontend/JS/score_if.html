@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>등급 산정_if</title>
+    <script>
+        var score = prompt("점수 입력하세요~");
+        
+        // 아무것도 입력되지 않으면 "" 으로, Falsy 값을 가짐
+        // 마지막 else 절에서 50 미만으로 인식돼서 F 가 뜬다.
+        if (score) {
+            if (score >= 90) {
+                alert("score : " + score + " -> A");
+                document.write("A ~ 축하해요!!");
+            } else if (score >= 80) {
+                alert("score : " + score + " -> B");
+                document.write("B ~ 축하해요!");
+            } else if (score >= 70) {
+                alert("score : " + score + " -> C");
+                document.write("C ~ 수고했어요!");
+            } else if (score >= 50) {
+                alert("score : " + score + " -> D");
+                document.write("D ~ 수고했어요.");
+            } else {
+                alert("score : " + score + " -> F");
+                document.write("F ~ 좀 하세요.");
+            }
+        } else {
+            alert("점수가 입력되지 않았습니다.");
+            document.write("점수가 입력되지 않았습니다.");
+        }
+    </script>
+</head>
+<body>
+    <h3>등급 산정 기준</h3>
+    <p>A : 90 이상</p>
+    <p>B : 80 ~ 89</p>
+    <p>C : 70 ~ 79</p>
+    <p>D : 50 ~ 69</p>
+    <p>F : 50 미만</p>
+</body>
+</html>

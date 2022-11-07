@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>operator</title>
+    <script>
+        console.log("산술 비트 연산자");
+        console.log(~14); // 1의 보수는 부호가 반대가 되고 절대값 1 차이
+        console.log(27 & 14); // 10
+        console.log(27 | 14); // 31
+        console.log(27 ^ 14);
+        console.log(14 << 2); // 한 번 밀때마다 2배씩 증가
+        console.log(14 >> 2);
+        console.log(14 >>> 2);
+        console.log(-14 >> 2); // 음수 경우 >>과 결과가 다름
+        console.log(-14 >>> 2);
+
+        console.log("논리 연산자");
+        // 앞의 식의 결과가 false이면 뒤의 식 확인 안함
+        var x = 10;
+        var result = x > 10 && x++;
+        console.log(x);
+
+        // javascript는 boolean이 아니어도 && 연산을 할 수 있음
+        result = true && 10;
+        console.log(result);
+
+        let data1 = [1, 2];
+        // let data1 = null;
+        let data2 = [3, 4];
+        
+        // data1에 데이터가 있으므로 true 가 반환되고, 첫번째가 true라면 두번째는 볼 필요 없음 -> return data1;
+        // data1이 null이라면 false 가 반환되고, 두번째에 있는 데이터가 반환 -> return data2;
+        // 만약 data1가 0이라면 0은 falsy 값이라 data2 가 남는다.
+        result = data1 || data2;
+        console.log("result : " + result);
+
+        console.log("문자열 연산자");
+        console.log("data2 : " + data2);
+        
+        console.log("12" * 3);
+
+        console.log("삼항 연산자");
+        let a1 = 20;
+        let a2 = 30;
+        let max = (a1 > a2) ? a1 : a2;
+        console.log("max : " + max);
+
+        console.log("nullish operator");
+
+        // String1이 null이 아니기 때문에 data1이 남는다.
+        // ?? Falsy를 판단하는 것이 아니고 데이터의 존재여부를 확인
+        let String1 = "Hello";
+        let String2 = "JavaScript";
+        result = String1 ?? String2;
+        console.log("result : " + result);
+
+        console.log("typeof 연산자");
+        var str = "닝닝";
+        console.log(typeof str); // str 변수의 타입(자료형) 확인
+
+        var arr = ["카리나", "지젤", "윈터"];
+        console.log(0 in arr);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

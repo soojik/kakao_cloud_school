@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문</title>
+    <script>
+        // Hello JavaScript를 3번 출력하고 싶을 때
+        
+        console.log("Hello JavaScript");
+        console.log("Hello JavaScript");
+        console.log("Hello JavaScript");
+
+        for (var i=0;i<3;i++) {
+            console.log("Hello JavaScript");
+        }
+
+        // 둘의 차이?
+        // 유지보수, 속도
+
+        console.log("for 문");
+        // image1.png image11.png image21.png image31.png
+        for (var i=1;i<=31;i+=10) {
+            console.log("image"+i+".png");
+        }
+
+        //page1 page16 page 31
+        for (var i=1;i<=61;i+=15) {
+            console.log("page="+i);
+        }
+
+        console.log("while 문");
+        var i=1;
+        while(i<=61) {
+            console.log("page="+i);
+            i+=15;
+        }
+
+        console.log("do~while 문");
+        i = 1;
+        do {
+            console.log("image"+i+".png");
+            i+=15;
+        } while(i<=1);
+
+        // Object 객체 생성 - name과 age라는 속성
+        var ning = {name:"ningning", age:"21"};
+
+        for (var attr in ning) {
+            alert(attr + " : " + ning[attr]);
+        }
+        
+        // Aray 객체 생성
+        var info = [2001, 10, 23];
+
+        for (var attr in info) {
+            if (attr == 0) {
+                alert("YYYY : " + info[attr]);
+            } else if (attr == 1) {
+                alert("MM : " + info[attr]);
+            } else {
+                alert("DD : " + info[attr]);
+            }
+            
+        }
+
+    </script>
+</head>
+<body>
+    <h3>console 창 실습</h3>
+    <p>for</p>
+    <p>while</p>
+    <p>do~while</p>
+    <p>iterator</p>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화관_switch</title>
+    <script>
+        var str = "1 : 블랙팬서\n2 : 헤어질 결심\n3 : 하하하 고양이\n4 : 인어공주";
+        alert(str);
+        var num = prompt("1부터 4 사이의 문자를 입력하세요.");
+        
+        var movie;
+        switch(num) {
+            case "1":
+                movie = "블랙팬서";
+                break;
+            case "2":
+                movie = "헤어질 결심";
+                break;
+            case "3":
+                movie = "하하하 고양이";
+                break;
+            case "4":
+                movie = "인어공주";
+                break;
+            case null:
+                alert("취소되었습니다.");
+                break;
+            case "":
+                alert("번호를 입력하세요.");
+                break;
+            
+            default:
+                alert(num + "번호에 해당하는 영화는 없습니다.");
+        }
+
+        if (movie) {
+            document.write("<h1>"+movie+"</h1>");
+            document.write("<h3>즐거운 관람되세요~</h3>");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
