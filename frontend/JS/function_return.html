@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 - return</title>
+    <script>
+        function f1() {
+            for (var i=1;i<10;i++) {
+                if (i % 3 == 0) {
+                    // 수행을 종료하고 호출한 곳으로 돌아가기 때문에
+                    // break와 유사한 효과를 만들 수 있다.
+                    return;
+                }
+                console.log(i);
+            }
+        }
+
+        f1();
+
+        function f2(first, second) {
+            document.write("<h3>" + first + " + " + second + " = ?</h3>");
+            return first + second;
+        }
+
+        function print_result(result) {
+            return "<h2>" + result + "</h2>";
+        }
+
+        var result = f2(1, f2(2, 3));
+        document.write(print_result(result));
+
+        var tmp = f2(2, 3);
+        result = f2(1, tmp);
+        document.write(print_result(result));
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

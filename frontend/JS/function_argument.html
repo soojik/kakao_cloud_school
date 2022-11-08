@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 - 전달인자</title>
+    <script>
+        var arg = ["카리나", "지젤", "윈터", "닝닝"];
+        let f1 = (n, msg) => {
+            for (var i=0;i<n;i++) {
+                console.log(msg);
+            }
+        }
+
+        f1(3, "hi");
+
+        let f2 = (n, msg) => {
+            console.log(n);
+            console.log(msg);
+            console.log(arg[2]);
+        }
+
+        // msg는 undefined
+        f2(3);
+
+        // hihi는 출력X
+        f2(4, "hi", "hihi");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

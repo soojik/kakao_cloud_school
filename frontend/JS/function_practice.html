@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 - nested, high order function, closure</title>
+    <script>
+
+        document.write("<h2>closure 실습</h2>")
+        function outer() {
+            let x = 0;
+            return() => {
+                x++;
+                document.write("<h4>"+x+"</h4>");
+            }
+        }
+
+        document.write("<h3>반환될 때마다 x가 1씩 증가하는 outer 라는 함수의 반환 값을 result 변수에</h3>");
+        var result = outer();
+        document.write("<h3>첫번째 result 호출</h3>");
+        result();
+        document.write("<h3>두번째 result 호출</h3>");
+        result();
+
+        const f3 = function(n) {
+            return "<h4>" + Math.PI * n * n + "</h4>";
+        }
+
+        var result = f3(10);
+        document.write(result);
+        result = f3();
+        document.write(result);
+        document.write("<h4>위와 같은 상황에서 n = n || 1; 와 같이 or 연산자를 사용해 기본값을 설정해주어도 되지만, 애초에 매개변수에 기본값으로 1을 설정해주면 원하는 결과가 나온다.");
+
+        const f4 = function(n = 1) {
+            return "<h4>" + Math.PI * n * n + "</h4>";
+        }
+
+        document.write("<h4>f4는 f3에 매개변수 n의 기본값을 1로 추가로 설정해주었다.</h4>");
+        result = f4();
+        document.write(result);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

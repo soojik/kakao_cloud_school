@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스와 인스턴스</title>
+    <script>
+        class Member {
+            name = "이름";
+            // 클래스 안에 메서드를 만들 때는 function 생략
+            getName() {
+                return this.name;
+            }
+            setName(name) {
+                this.name = name;
+            }
+        }
+
+        document.write("<h3>default instance 생성 후, getName 메서드로 이름 가져오면 default 값인 이름 출력</h3>");
+        let member = new Member();
+        document.write(member.getName());
+        
+        document.write("<h3>setName 메서드로 이름 수정 가능</h3>");
+        member.setName("aespa");
+        document.write(member.getName());
+
+        document.write("<h3>클래스에 job이라는 새로운 속성의 getter, setter 메서드 추가</h3>");
+        Member.prototype.getJob = function() {
+            return this.job;
+        }
+        Member.prototype.setJob = function(job) {
+            this.job = job;
+        }
+        member.setJob("singer");
+        document.write(member.getJob());
+
+        document.write("<h3>JavaScript의 Overroading?</h3>");
+        function f() {
+            document.write("매개변수X");
+        }
+
+        function f(n) {
+            document.write("매개변수O");
+        }
+
+        document.write("<h4>f(10)</h4>");
+        f(10);
+        document.write("<h4>f()</h4>");
+        f();
+
+        document.write("<h4>매개변수 있는 f(n)이 나중에 삽입되어서 f(n)만 호출된다.</h4>");
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

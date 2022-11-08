@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP - 사용자 정의 객체</title>
+
+    <style>
+        #code {
+            color: grey;
+        }
+    </style>
+    <script>
+        let ning = {"name" : "Ningning",
+        "age" : "21",
+        "gender" : "woman",
+        "company" : "SM",
+        "group" : "aespa",
+        "toString" : function(str) {
+            return "<p>" + str + " : " + ning[str] + "</p>";
+        }};
+
+        document.write("<h2>닝닝 정보</h2>");
+
+        document.write("<br>");
+
+        document.write("<h3>닝닝의 정보를 담은 ning 배열의 값을 ning.속성 의 형태로 접근해 출력</h3>")
+        document.write("<p>이름 : "+ning.name+"</p>");
+        document.write("<p>나이 : "+ning.age+"</p>");
+        document.write("<p>성별 : "+ning.gender+"</p>");
+        document.write("<p>소속 회사 : "+ning.company+"</p>");
+        document.write("<p>소속 그룹 : "+ning.group+"</p>");
+
+        document.write("<br>");
+
+        // \u00a0 : 공백
+        document.write("<h3>ning 배열 안에 속성으로 만든 toString 함수로 속성 : 값 출력</h3>")
+        document.write("<h4 id=\"code\">\"toString\" : function(str) { <br> \u00a0\u00a0 return str + ning[str]; <br>}</h4>")
+        document.write(ning.toString("name"));
+        document.write(ning.toString("age"));
+        document.write(ning.toString("gender"));
+        document.write(ning.toString("company"));
+        document.write(ning.toString("group"));
+
+        document.write("<h3>속성의 존재 여부</h3>");
+        document.write("is name property in ning object? <br>");
+        document.write("name" in ning);
+        document.write("<br><br>");
+        document.write("is address property in ning object? <br>");
+        document.write("address" in ning);
+        document.write("<br>");
+
+        document.write("<h3>없었던 속성 address 추가</h3>");
+        ning.address = "강남";
+        document.write("is address property in ning object? <br>");
+        document.write("address" in ning);
+        document.write("<br>");
+
+        document.write(ning.toString("address"));
+
+        document.write("<h3>address 속성 다시 삭제</h3>");
+        delete(ning.address);
+        document.write("is address property in ning object? <br>");
+        document.write("address" in ning);
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

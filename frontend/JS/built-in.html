@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>built-in 함수</title>
+    <script>
+        document.write("<h2>built-in 함수 - confirm</h2>");
+
+        alert("일방적 메세지 출력");
+
+        var msg = "밥 먹었니?";
+
+        document.write("<h3>"+msg+"</h3>");
+        var answer = confirm(msg);
+        document.write("대답 : " + answer);
+
+        document.write("<h2>built-in 함수 - prompt</h2>");
+
+        msg = "너 이름이 뭐니?";
+        document.write("<h3>"+msg+"</h3>");
+        answer = prompt(msg);
+        if (!answer) {
+            document.write("이름 입력해주라");
+        }
+        else {
+            document.write("이름 : " + answer);
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

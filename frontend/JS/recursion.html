@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recursion</title>
+    <script>
+        document.write("<h2>1 ~ n까지의 합을 구할 수 있는 sum(n) 함수를 재귀를 이용해 구현</h2>")
+        var input;
+
+        // 1 ~ n 까지의 합
+        const sum = n => {
+            // 중간점
+            if (n == 1) {
+                return 1;
+            }
+            // 자기자신 리턴 == 재귀
+            return n + sum(n-1);
+        }
+
+        input = 10;
+        document.write("<h3>sum("+input+")</h3>");
+        document.write(sum(input) + "<br>");
+
+        document.write("<h2>재귀를 이용해 피보나치 수열 구현</h2>")
+
+
+        input = 11;
+        const fibonacci_cursion = n => {
+            if (n == 1 || n == 2) {
+                return 1;
+            }
+
+            return fibonacci_cursion(n - 1) + fibonacci_cursion(n - 2);
+        }
+
+        document.write("<h3>fibonacci("+input+") with recursion</h3>");
+        document.write(fibonacci_cursion(input) + "<br>");
+        
+        document.write("<h3>다만, 재귀는 메모리 사용량이 훨씬 크기때문에 DP로 해결하는 것이 빠르다.</h3>");
+        document.write("<h2>DP를 이용해 피보나치 수열 구현</h2>")
+
+        input = 1000;
+        let n1, n2, fibo;
+        const fibonacci_DP_without_Array = n => {
+            n1 = 1;
+            n2 = 1;
+
+            for (var i=2; i<n;i++) {
+                fibo = n1 + n2;
+                n1 = n2;
+                n2 = fibo;    
+            }
+
+            return n2;
+        }
+
+        document.write("<h3>fibonacci("+input+") with dynamic programming</h3>");
+        document.write(fibonacci_DP_without_Array(input));
+        
+        document.write("<h2>DP와 배열을 이용해 피보나치 수열 구현</h2>")
+        input = 10;
+        var arr = [1, 1];
+        const fibonacci_DP = n => {
+            for (var i=2; i<n;i++) {
+                arr[i] = arr[i-1] + arr[i-2];
+            }
+
+            return arr;
+        }
+        
+        document.write("<h3>fibonacci("+input+") with dynamic programming & Array</h3>");
+        document.write(fibonacci_DP(input));
+
+        // setInterval(함수, 주기) : 주기마다 함수를 호출해서 실행하는 함수
+        // 함수를 대입받아 상태변화가 생길 때 호출되도록 하는 것이 callback
+        // 주기는 ms 단위
+
+        // setInterval(() => {
+        //     document.write("<p>hi</p>");
+        // }, 5000);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
