@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP - 상속</title>
+    <script>
+        class Star {
+            constructor(name = "") {
+                this.name = name;
+            }
+
+            attack() {
+                document.write("공격 ㄱㄱ<br>");
+            }
+        }
+
+        class Protoss extends Star {
+            constructor(name = "no name", damage = 1){
+                super(name);
+                this.damage = damage;
+            }
+            
+            attack() {
+                super.attack();
+                document.write("name : " + this.name);
+                document.write("<br>");
+                document.write("damage : " + this.damage);
+            }
+        }
+
+        document.write("<h2>Star 클래스를 Protoss가 상속받은 상태</h2>");
+        document.write("<h3>Star 클래스에만 구현된 attack() 메서드를 Protoss 클래스 인스턴스에서도 사용할 수 있다.</h3>");
+        const p = new Protoss();
+
+        p.attack();
+
+        document.write("<h3>하위 클래스에서 상위 클래스의 것을 가져오려면 써야하는 super()</h3>");
+        document.write("<h3>const p1 이 Protoss(\"soo\", 5) 생성자로 생성</h3>");
+        const p1 = new Protoss("soo", 5);
+        p1.attack();
+
+        document.write("<h3>다형성</h3>");
+        const p2 = new Star("joo");
+        p2.attack();
+        document.write("<h4>위와 같이 Star 인스턴스는 똑같이 attack을 호출했을 때 Star 클래스의 메서드, attack을 호출한다.</h4>");
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

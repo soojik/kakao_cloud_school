@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterator</title>
+    <script>
+        let func = result => {
+            if (result === undefined) {
+                document.write("순차적 반복 처리 불가능");
+                return false;
+            } else {
+                document.write("순차적 반복 처리 가능");
+                return true;
+            }
+        }
+
+        document.write("<h3>속성:값 형태의 데이터 iterator</h3>");
+        let ning = {"name" : "Ningning",
+        "age" : "21",
+        "gender" : "woman",
+        "company" : "SM",
+        "group" : "aespa"};
+        let result = ning[Symbol.iterator];
+        let isIterator_1 = func(result);
+
+        document.write("<h3>배열 형태의 데이터 iterator</h3>");
+        let arr = ["XHTML", "CSS", "JavaScrpit", "HTML5", "Node.js", "react.js"];
+        result = arr[Symbol.iterator];
+        let isIterator_2 = func(result);
+
+        document.write("<h3>iterator를 가지는지 유무를 판단한 후, 가졌으면 iterator 사용해 내용 출력하도록 하는 함수 iterFunc 정의</h3>");
+
+        let iterFunc = (b, data) => {
+            if (b) {
+                let iter = data[Symbol.iterator]();
+                for (let value of iter) {
+                    document.write(value + "<br>");
+                }
+            }
+        }
+
+        document.write("<h3>속성:값 형태 데이터는 iterator 가 없으므로 실행되지 않고,</h3>");
+        iterFunc(isIterator_1, ning);
+        document.write("<h3>배열 데이터는 실행 된다.</h3>");
+        iterFunc(isIterator_2, arr);
+        
+        document.write("<h3>in 은 속성을 추출 == 배열은 인덱스를 추출</h3>");
+        for (attr in arr) {
+            document.write(attr);
+        }
+
+        document.write("<h3>of 는 데이터를 추출</h3>");
+        for (attr of arr) {
+            document.write(attr + "<br>");
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

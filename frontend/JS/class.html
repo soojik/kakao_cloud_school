@@ -7,12 +7,17 @@
     <title>클래스와 인스턴스</title>
     <script>
         class Member {
+            
             name = "이름";
             // 클래스 안에 메서드를 만들 때는 function 생략
             getName() {
                 return this.name;
             }
             setName(name) {
+                this.name = name;
+            }
+
+            Member(name) {
                 this.name = name;
             }
         }
@@ -35,7 +40,11 @@
         member.setJob("singer");
         document.write(member.getJob());
 
-        document.write("<h3>JavaScript의 Overroading?</h3>");
+        document.write("<h3>생성자 매개변수</h3>");
+        let member2 = new Member("nmixx");
+        document.write(member2.getName);
+
+        document.write("<h3>JavaScript의 Overloading?</h3>");
         function f() {
             document.write("매개변수X");
         }

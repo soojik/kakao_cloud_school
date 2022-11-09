@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #code {
+            color: grey;
+        }
+    </style>
+    <title>class - 생성자</title>
+    <script>
+        const Member = class {
+            constructor(name = "", job = "") {
+                this.name = name;
+                this.job = job;
+            }
+
+            setName(name) {
+                this.name = name;
+            }
+
+            getName() {
+                return this.name;
+            }
+            
+            setJob(job) {
+                this.job = job;
+            }
+
+            getJob() {
+                return this.job;
+            }
+
+            // prototype에 추가하는 것이 아니라 클래스에 추가
+            static disp() {
+                return "static";
+            }
+            
+            static static_getName() {
+                return this.name;
+            }
+        }
+        
+        document.write("<h2>매개변수가 있는 생성자</h2>");
+        document.write("<h3>이름과 직업을 설정할 수 있는 Member 클래스 작성</h3>");
+
+        document.write("<h3 id=\"code\">const Member = class { <br> \u00a0 constructor(name = \"\", job=\"\") { <br>" +
+        "\u00a0\u00a0 this.name = name;<br> \u00a0\u00a0 this.job = job; <br> \u00a0} <br> }</h3>");
+
+        const member1 = new Member();
+        
+        document.write("<h3>설정하지 않고 default 값 가져오기</h3>");
+        document.write(member1.getName() + "<br>");
+        document.write(member1.getJob() + "<br>");
+
+        const member2 = new Member("aespa", "singer");
+        document.write("<h3>생성할 때 Member(name, job) 설정하고, getName으로 가져온 결과</h3>");
+        document.write(member2.getName() + "<br>");
+        document.write(member2.getJob() + "<br>");
+
+        
+        document.write("<h3>속성을 [this.속성] 로 가져오지 않고 그냥 [속성]으로 가져와도 된다.</h3>");
+        const member3 = new Member("nct", "singer");
+        document.write(member3.name + "<br>");
+
+        // 클래스 이름으로 일반 메서드 호출하면 에러
+        // 메서드를 호출할 때 this에 인스턴스 자신의 참조를 넘겨야하는데
+        // 클래스는 인스턴스가 아니기 때문에 this에 대입이 안된다.
+        // document.write(Member.getJob()); -> error
+
+        document.write("<h3>클래스가 불러오는 메서드인 static은 prototype만에 추가된 것만 호출이 가능한 인스턴스가 호출할 수는 없다.</h3>");
+        document.write(Member.disp());
+        
+        document.write("<h3>static 메서드는 인스턴스의 참조가 아니라 class의 참조이기 때문에 인스턴스의 속성 즉, this.속성을 불러올 수 없다.</h3>");
+        document.write(Member.static_getName());
+
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

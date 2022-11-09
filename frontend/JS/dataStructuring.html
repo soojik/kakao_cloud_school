@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구조 분해 할당</title>
+    <script>
+        document.write("<h3>arr 이라는 크기 4의 배열을 만들고 one, two, three, four 라는 새로운 변수에 arr 내용을 순서대로 대입</h3>");
+        var arr = [100, 200, 300, 400];
+        let [one, two, three, four] = arr;
+        document.write("one : " + one+"<br>");
+
+        document.write("<h3>속성:값 데이터도 되지만, 해당 데이터 안에 있는 속성만 불러올 수 있고, 없는 속성을 불러오면 undefined 가 출력</h3>");
+        var ning = {"name" : "닝닝", "job" : "가수"};
+        var {name1, job} = ning;
+        document.write("name1 : " + name1 + "<br>");
+        document.write("job : " + job + "<br>");
+        
+        document.write("<h3>name은 앞에서 안 받아왔으니까 null</h3>");
+        // document.write("name : " + name + "<br>");
+
+        document.write("<h3>parameter 가 2개 이상인 경우는 순서를 헷갈릴 수 있으니 묶어서 전달하자</h3>");
+        // let display = ({msg, n}) => { 와 같이 매개변수 자리에 튜플형식으로 넣어줘도 된다.
+        let display = ob => {
+            let {msg, n} = ob;
+            for (var i=0;i<n;i++) {
+                document.write(msg);
+                document.write("<br>");
+            }
+        }
+
+        document.write("<h3>{\"msg\", \"n\"}와 같이 묶어서 display 함수에 전달</h3>");
+        display({msg : "hi", n : 4});
+
+        document.write("<h2>spread, rest param</h2>");
+        var karina = {"name" : "카리나", "job" : "가수", "company" : "SM", "group" : "aespa"};
+        
+        document.write("<h3>let [first, ...etc] = arr 로 arr 데이터를 가져오면 first에 첫번째, 그리고 나머지가 etc 에 들어간다.</h3>");
+        
+        let [first, ...etc] = arr;
+
+        document.write("first : " + first);
+                document.write("<br>");
+        document.write("etc : " + etc);
+                document.write("<br>");
+
+
+        document.write("<h3>var {name, job, ...attr} = karnia 로 karina 데이터를 가져오면 name엔 name 속성의 값, job에는 job 속성 값, 그리고 attr에 나머지 group, company 값이 들어간다.</h3>");
+        
+        var {name, job, ...attr} = karina;
+
+        document.write("name : " + name);
+        document.write("<br>");
+        document.write("job : " + job);
+        document.write("<br>");
+        document.write("attr : " + attr.company + ", " + attr.group);
+        document.write("<br>");
+
+        let rest = ({name, job, ...attr}) => {
+            console.log(attr);
+        }
+
+        document.write("<h3>console 창 확인</h3>");
+        rest(karina);
+
+        let [a, b, c, d, e = 500] = arr;
+        document.write(e);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
