@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map</title>
+    <script>
+        let map = new Map();
+        map.set("name", "ning");
+        console.log(map);
+        map.set("name", "ningning");
+        console.log(map);
+        console.log(map.get("name"));
+        console.log(map.get("이름"));
+
+        for (key of map.keys()) {
+            console.log("key : " + key);
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

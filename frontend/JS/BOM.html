@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+
+<body>
+
+    <div id="display"></div>
+    <img alt="no image" id="image" width="600">
+    <script>
+        let idx = 1;
+        var aespa = ["카리나", "지젤", "윈터", "닝닝"];
+        let len = aespa.length;
+        setInterval(() => {
+            document.getElementById("image").src = "./images/thumbnail" + (idx++ % 4) + ".jpg";
+        }, 2000)
+
+    </script>
+</body>
+
+</html>

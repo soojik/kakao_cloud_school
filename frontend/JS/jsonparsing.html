@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json parsing</title>
+    <script>
+        var ning = '{"name" : "ningning", "age" : 21, "group" : "aespa", "company" : "SM"}';
+
+        var result = JSON.parse(ning);
+        console.log(result.name);
+
+        arr = "[40, 30, 56, 22]";
+        result = JSON.parse(arr);
+
+        result.forEach(e => {console.log(e)});
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규 표현식</title>
+    <script>
+        var str = "JavaScript Reg Exp";
+        // 위 str 문자열에 script가 속해있는지
+        var regExp = /script/;
+        console.log("script 가 포함? : " + regExp.test(str));
+        console.log("모두 소문자로 바꿨을 때 script 가 포함? : " + regExp.test(str.toLowerCase()));
+        console.log("대소문자 관계없이 찾고싶으면 한정자 i 사용!");
+        regExp = /script/i;
+        console.log("script 포함? " + regExp.test(str));
+
+        // 주민등록번호 검사
+        // 숫자 6개 - 숫자 7개
+        var personal_code1 = "123456-1234567";
+        var personal_code2 = "1234567-1234567";
+        var personal_code3 = "1r3456-1234567";
+
+        var valid = /^\d{6}-\d{7}$/;
+        console.log("1번 주민번호는 올바른 형식인가? : " + valid.test(personal_code1));
+        console.log("2번 주민번호는 올바른 형식인가? : " + valid.test(personal_code2));
+        console.log("3번 주민번호는 올바른 형식인가? : " + valid.test(personal_code3));
+
+        // 입력 데이터의 유효성 검사는
+        // 문자열과 정규 표현식을 이용한다.
+
+        // 텍스트 마이닝(전처리) 할 때 정규 표현식에 해당하는 데이터를 다른 데이터로 치환한다.
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

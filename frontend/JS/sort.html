@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정렬</title>
+    <script>
+        var arr1 = ["소녀시대", "에스파", "레드벨벳", "에프엑스"]
+        var arr2 = [20, 30, 240, 150];
+
+        console.log("sorted first array : " + arr1.sort());
+        console.log("JavaScript는 숫자 배열을 문자 배열로 판단하고 정렬한다.");
+        console.log("sorted second array : " + arr2.sort());
+
+        console.log("sorted second array : " + arr2.sort((a, b) => { return a - b }));
+
+        console.log("내림차순 정렬");
+        console.log("reverse sorted second array : " + arr2.sort((a, b) => { return b - a }));
+
+        console.log("reverse sorted first array : " + arr1.sort((a, b) => { return ((a < b) ? 1 : -1); }));
+
+        function Book(name = "no name", price = "0", writer = "no writer") {
+            this.name = name;
+            this.price = price;
+            this.writer = writer;
+
+            // Overriding
+            this.toString = function () {
+                return "name : " + this.name + ", price : " + this.price + ", writer : " + this.writer;
+            }
+        }
+
+        let books = [new Book("matilda", 9800, "Roald Dahl"), new Book("Charlie and the Chocolate Factory", 5700, "Roald Dahl"),
+        new Book("채식주의자", 14000, "한강"), new Book("우리가 빛의 속도로 갈 수 없다면", 17000, "김초엽"),
+        new Book("종의 기원", 23000, "정유정")];
+
+        for (var book of books) {
+            console.log(book.toString());
+        }
+
+        alert("1 - 이름순(오름차순)\n2 - 이름순(내림차순)\n3 - 가격순(오름차순)\n4 - 가격순(내림차순)\n5 - 작가이름순(오름차순)\n6 - 작가이름순(내림차순)")
+        var menu = prompt("번호를 입력하세요.");
+        menu = menu.trim();
+        switch (menu) {
+            case "1":
+                console.log("이름순(오름차순)");
+                console.log(books.sort((a, b) => { return (a.name > b.name) ? 1 : -1 }));
+                break;
+            case "2":
+                console.log("이름순(내림차순)");
+                console.log(books.sort((a, b) => { return (a < b) ? 1 : -1 }));
+                break;
+            case "3":
+                console.log("가격순(오름차순)");
+                console.log(books.sort((a, b) => { return a.price - b.price }));
+                break;
+            case "4":
+                console.log("가격순(내림차순)");
+                console.log(books.sort((a, b) => { return b.price - a.price }));
+                break;
+            case "5":
+                console.log("작가이름순(오름차순)");
+                console.log(books.sort((a, b) => { return (a.writer > b.writer) ? 1 : -1 }));
+                break;
+            case "6":
+                console.log("작가이름순(내림차순)");
+                console.log(books.sort((a, b) => { return (a.writer < b.writer) ? 1 : -1 }));
+                break;
+            case null:
+                alert("취소되었습니다.");
+                break;
+            case "":
+                alert("번호를 입력하세요.");
+                break;
+            default:
+                alert(menu + "(은)는 없는 번호입니다.\n1~6 사이의 번호를 입력해주세요~");
+                console.log("없는 번호입니다.\n1~6 사이의 번호를 입력해주세요~");
+                break;
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

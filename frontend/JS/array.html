@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+    <script>
+        var arr1 = ["HTML", "CSS", "JavaScript", "react"];
+        var arr2 = ["MariaDB", "Java", "Spring"];
+
+        // 2개의 배열 합치기
+        // Map Reduce Programming 에서 각각의 데이터로 처리한 후 결과를 합친다.
+        // 합치는 순서 영향 있음 
+        var subjects = arr2.concat(arr1);
+
+        // 전체 배열 확인
+        console.log(subjects);
+
+        for (subject of subjects) {
+            console.log(subject);
+        }
+
+        // 처음에 데이터 추가하고 처음에 삽입한 데이터를 제거
+        // - Queue(First In First Out)
+        subjects.unshift("node");
+        console.log(subjects);
+        console.log("shift subjects data : " + subjects.shift());
+        console.log(subjects);
+        subjects.push("linux");
+        console.log(subjects);
+        console.log("pop subjects data : " + subjects.pop());
+        console.log(subjects);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
