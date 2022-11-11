@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+
+<body>
+    <button id="btn">json 데이터 가져오기</button>
+    <div id="display"></div>
+    <script>
+        window.addEventListener("load", (e) => {
+            // DOM 객체 찾아오기
+            let btn = document.getElementById("btn");
+            let display = document.getElementById("display");
+
+            btn.addEventListener("click", (e) => {
+                display.innerHTML = "<h3 style=\"color: green;\">XX마을 주민 목록</h3>";
+                
+                let request = new XMLHttpRequest();
+
+                request.open("GET", "../resources/data.json");
+                request.send('');
+
+                request.addEventListener("load", (e) => {
+                    let data = JSON.parse(request.responseText);
+                    const count = data.count;
+                    const list = data.list;
+
+                    // 배열을 순회
+                    // for (info of list) {
+                    //     display.innerHTML += "<p>" + info.name + "</p>";
+                    // }
+
+                    // 배열을 순회하며 { } 안의 내용을 수행
+                    list.forEach((info) => {
+                        display.innerHTML += "<p>" + info.name + "</p>";
+                    })
+                });
+
+                request.addEventListener("error", (e) => {
+                    display.innerHTML += e;
+                })
+            })
+        });
+    </script>
+</body>
+
+</html>

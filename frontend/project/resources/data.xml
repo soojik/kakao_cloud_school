@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Root>
+    <Person>
+        <name>피터</name>
+        <species>사슴</species>
+        <character>먹보</character>
+    </Person>
+    <Person>
+        <name>래미</name>
+        <species>염소</species>
+        <character>먹보</character>
+    </Person>
+    <Person>
+        <name>사이다</name>
+        <species>고양이</species>
+        <character>친절</character>
+    </Person>
+    <Person>
+        <name>보스터</name>
+        <species>햄스터</species>
+        <character>무뚝뚝</character>
+    </Person>
+</Root>

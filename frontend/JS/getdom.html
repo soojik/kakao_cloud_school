@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+
+<body>
+    <h1 id="header">제목</h1>
+    <p id="content">안녕</p>
+    <input type="text" id="alias">
+    
+    <script>
+        let h1 = document.getElementById("header");
+
+        h1.style.color = "red";
+        h1.style.border = "2px solid red";
+
+        let content = document.getElementById("content");
+
+        content.innerHTML += " 덧붙이기~";
+        
+        alias.value = "hoho";
+    </script>
+</body>
+
+</html>

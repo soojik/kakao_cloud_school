@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax - text</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            float: left;
+            width: 400px;
+            height: 400px;
+            margin-top: 30px;
+        }
+        #content_ {
+            float: left;
+            width: 400px;
+            height: 400px;
+            margin-top: 30px;
+        }
+
+        p {
+            padding: 5px;
+        }
+
+        h3 {
+            padding: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-left: 10px;
+            padding: 5px;
+            background-color: floralwhite;
+            color: darkolivegreen;
+            border: 2px solid seagreen;
+        }
+        
+    </style>
+    <script>
+        window.addEventListener("load", (e) => {
+            // 필요한 DOM 찾아오기
+            let btn_members_name = document.getElementById("btn_members_name");
+            let content = document.getElementById("content");
+            let content_ = document.getElementById("content_");
+            let btn_peter = document.getElementById("btn_peter");
+            let btn_members_info = document.getElementById("btn_members_info");
+            let arr, result;
+
+            // CSV 버튼 클릭 이벤트
+            btn_members_name.addEventListener("click", (e) => {
+                // ajax 요청 객체 생성
+                let request = new XMLHttpRequest();
+
+                // 연결 준비 - 첫번째는 요청 방식, 두번째는 URL
+                request.open("GET", "./data/csv_data.csv");
+                // 요청 - 데이터와 함께 전송해야 하는데 지금은 없으므로 빈 문자열
+                request.send('');
+
+                // 요청을 받기 위한 callback 등록
+                // 정삽 응답이 온 경우
+                request.addEventListener("load", (e) => {
+                    content.innerHTML = "";
+                    content_.innerHTML = "";
+
+                    // XML 이외의 경우
+                    arr = request.responseText.split(",");
+                    for (name of arr) {
+                        content.innerHTML += "<p style=\"color: blue;\">" + name + "</p>"
+                    }
+                });
+
+                // 에러가 발생했을 때 처리
+                request.addEventListener("error", (e) => {
+                    alert(request.status);
+                });
+
+            })
+
+            btn_peter.addEventListener("click", (e) => {
+                let request = new XMLHttpRequest();
+
+                request.open("GET", "./data/json_data.json");
+                request.send('');
+
+                request.addEventListener("load", (e) => {
+                    content.innerHTML = "";
+                    content_.innerHTML = "";
+                    
+                    result = JSON.parse(request.responseText);
+                    content.innerHTML += "<p>피터가 좋아하는 말은? </p>"
+                        + "<h3 style=\"color : red;\">" + result.quote + "</h3>";
+                })
+
+                request.addEventListener("error", (e) => {
+                    alert(request.status);
+                })
+            })
+
+            btn_members_info.addEventListener("click", (e) => {
+                let request = new XMLHttpRequest();
+
+                request.open("GET", "./data/json_data2.json");
+                request.send('');
+
+                request.addEventListener("load", (e) => {
+                    content.innerHTML = "";
+                    content_.innerHTML = "";
+
+                    result = JSON.parse(request.responseText);
+
+                    const cnt = result.count;
+                    const list = result.list;
+
+                    for (info of list) {
+                        content.innerHTML += "<p>" + info.name + "는 어떤 동물일까요~?</p>"
+                            +"<h3 style=\"color : pink;\">" + info.speices + "</h3>";
+                        content_.innerHTML += "<p>" + info.name + "의 성격 타입이 뭘까요~?</p>"
+                            +"<h3 style=\"color : green;\">" + info.character + "</h3>";
+                    }
+                })
+
+                request.addEventListener("error", (e) => {
+                    alert(request.status);
+                })
+            })
+            
+        })
+    </script>
+</head>
+
+<body>
+    <button id="btn_members_name">주민 이름 읽어오기</button>
+    <br><br>
+    <button id="btn_peter">피터 정보 읽어오기</button>
+    <br><br>
+    <button id="btn_members_info">여러 주민 정보 읽어오기</button>
+    <br>
+    <div id="content"></div>
+    <div id="content_"></div>
+    
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+    "count": 3,
+    "list": [
+        {
+            "name": "피터",
+            "character": "먹보",
+            "speices": "사슴",
+            "quote": "사슴 일은 아무도 모른다",
+            "birth": "0405"
+        },
+        {
+            "name": "미애",
+            "character": "성숙",
+            "speices": "아기곰",
+            "quote": "꿈속에서는 영원히 춤출 수 있다",
+            "birth": "0310"
+        },
+        {
+            "name": "사이다",
+            "character": "친절",
+            "speices": "고양이",
+            "quote": "고양이도 밟으면 꿈틀한다",
+            "birth": "0327"
+        }
+    ]
+}

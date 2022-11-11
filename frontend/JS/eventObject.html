@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 객체의 내용</title>
+</head>
+
+<body>
+    <p id="paragraph">문단 태그</p>
+    <button id="btn">버튼</button>
+    <script>
+        document.getElementById("paragraph").addEventListener("click",
+            (e) => {
+                for (attr in e) {
+                    console.log(attr);
+                }
+            });
+
+        document.getElementById("btn").addEventListener("click", (e) => {
+            // 문단 태그의 클릭이 발생하도록 강제로 이벤트 발생
+            document.getElementById("paragraph").click();
+        })
+    </script>
+
+    <form action="loginProcessing" method="post" id="loginForm">
+        <p id="error_msg" style="height: 15px;"></p>
+        <p>
+            아이디 <input type="text" name="id" id="id" />
+        </p>
+        <p>
+            비밀번호 <input type="password" name="pw" id="pw" />
+        </p>
+        <p>
+            비밀번호 확인 <input type="password" name="pw_check" id="pw_check" />
+        </p>
+        <input type="submit" value="login">
+    </form>
+
+    <h1 id="outer" style="height: 20px;">
+        <span id="inner">stop propagation</span>
+    </h1>
+
+    <script>
+        // 비밀번호 비어있으면 전송 안되도록
+        // 비밀번호 확인란 생성해서 맞지 않으면 전송 안되도록
+        // 비밀번호 패턴이 맞지 않으면 전송 되지 않도록
+        // 비밀번호의 패턴 보고 강한 비밀번호 인지 아닌지 판별
+
+        let login_form = document.getElementById("loginForm");
+        let error_msg = document.getElementById("error_msg");
+        let login_id = document.getElementById("id");
+        let login_pw = document.getElementById("pw");
+        let login_pw_check = document.getElementById("pw_check");
+
+
+        login_form.addEventListener("submit", (event) => {
+
+            if (isEmpty(login_id)) {
+
+                error_msg.innerHTML = "아이디는 필수 입력 값입니다.";
+
+                if (isEmpty(login_pw)) {
+                    error_msg.innerHTML = "아이디와 비밀번호는 필수 입력 값입니다.";
+                }
+
+                error_msg.style.color = "red";
+
+                event.preventDefault();
+            }
+
+            else if (isEmpty(login_pw)) {
+
+                error_msg.innerHTML = "비밀번호는 필수 입력 값입니다.";
+                error_msg.style.color = "red";
+
+                event.preventDefault();
+            }
+            else {
+                if (isEmpty(login_pw_check)) {
+
+                    error_msg.innerHTML = "비밀번호 확인란에 비밀번호를 다시 한번 입력해주세요.";
+                    error_msg.style.color = "red";
+
+                    event.preventDefault();
+                } else {
+                    let valid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
+                    if (!valid.test(login_pw.value)) {
+                        error_msg.innerHTML = "비밀번호는 '숫자', '문자', '특수문자' 무조건 1개 이상, 총 길이 '최소 8자에서 최대 16자'까지 허용합니다.";
+                        error_msg.style.color = "red";
+
+                        event.preventDefault();
+                    }
+                    else {
+                        if (login_pw.value === login_pw_check.value) {
+                            error_msg.innerHTML = "회원가입 성공!";
+                            error_msg.style.color = "black";
+
+                            event.preventDefault();
+                        } else {
+                            error_msg.innerHTML = "비밀번호 확인이 맞지 않습니다.";
+                            error_msg.style.color = "red";
+
+                            event.preventDefault();
+                        }
+                    }
+                }
+            }
+        })
+
+        let isEmpty = (data) => {
+            if (data.value.trim().length === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        let outer = document.getElementById("outer");
+        let inner = document.getElementById("inner");
+
+        outer.addEventListener("click", (e) => {
+            alert("outer");
+        });
+
+        inner.addEventListener("click", (e) => {
+            alert("inner");
+            e.stopPropagation();
+        })
+    </script>
+</body>
+
+</html>
