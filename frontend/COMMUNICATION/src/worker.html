@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web worker</title>
+</head>
+
+<body>
+    <h1>Web Worker</h1>
+    숫자입력 <input type="number" name="num" id="num">
+    <button id="start">합계 구하기</button>
+
+    <script>
+        let num = document.getElementById("num");
+        let start = document.getElementById("start");
+
+        let worker;
+        start.addEventListener("click", (e) => {
+            if (worker) {
+                worker.terminate();
+            }
+
+            // 워커 생성
+            worker = new Worker("./worker.js");
+
+            // 메세지 전송
+            worker.postMessage(num.value);
+
+            worker.onmessage = (event) => {
+                console.log("1부터 " + num.value + "까지의 합 : " + event.data);
+            }
+        });
+
+    </script>
+</body>
+
+</html>

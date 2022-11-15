@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Storage</title>
+</head>
+
+<body>
+
+    <fieldset>
+        <legend>데이터 입력 영역</legend>
+        <!-- 2개의 문자열 입력받는 도구와 버튼 3개-->
+        key<input type="text" name="key_input" id="key_input">
+        value<input type="text" id="value_input">
+
+        <input type="button" value="삽입" id="insert_btn">
+        <button id="remove_btn">삭제</button>
+        <button id="add_window_btn">윈도우 추가</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>데이터 출력 영역</legend>
+        <select name="list" id="list" size=20></select>
+    </fieldset>
+
+    <script>
+        let key_input = document.getElementById("key_input");
+        let value_input = document.getElementById("value_input");
+        let insert_btn = document.getElementById("insert_btn");
+        let remove_btn = document.getElementById("remove_btn");
+        let add_window_btn = document.getElementById("add_window_btn");
+        let list = document.getElementById("list");
+
+        // 세션 스토리지의 내용을 읽어서 list에 출력하는 함수
+        // 처음 접속할 때 그리고 삽입이나 삭제를 할 때
+        // 매번 데이터를 다시 출력할 생각이라 코드를 여러번 작성하지 않도록
+        const showData = () => {
+            // list 초기화
+            list.innerHTML = "";
+
+            // 세션 스토리지를 순회하면서 하나씩 읽기
+            for (let i = 0; i < sessionStorage.length; i++) {
+                let key = sessionStorage.key(i);
+
+                // select에 옵션 추가
+                list.options[list.options.length] = new Option(key + " : " + sessionStorage[key], key);
+            }
+        }
+
+        window.addEventListener("load", (e) => {
+            // Live Server 를 이용해서 실행하면 기본적으로 하나의 데이터가 저장되어 출력
+            showData();
+        });
+
+        insert_btn.addEventListener("click", (e) => {
+            sessionStorage[key_input.value] = value_input.value;
+
+            showData();
+        })
+
+        list.addEventListener("click", () => {
+            let selected_data = list.options[list.selectedIndex];
+            key_input.value = selected_data.value;
+            value_input.value = sessionStorage[selected_data.value];
+        })
+
+        remove_btn.addEventListener("click", () => {
+            delete sessionStorage[key_input.value];
+            showData();
+        })
+
+
+    </script>
+</body>
+
+</html>
