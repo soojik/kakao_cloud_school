@@ -1,0 +1,11 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "node project for study",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Test! Hello World!!\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
