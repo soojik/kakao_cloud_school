@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 여러 개 업로드</title>
+</head>
+
+<body>
+    <form method="post" id="form" enctype="multipart/form-data">
+        <p>이름 :
+            <input type="text" name="title" id="title">
+        </p>
+        <p>파일 :
+            <input type="file" name="image" id="image" accept=".jpg,.png,.jpeg" multiple="multiple">
+        </p>
+        <input type="submit" name="submit_btn_multi" id="submit_btn_multi" value="전송">
+    </form>
+
+    <script>
+        let titles = document.getElementById("title");
+        let images = document.getElementById("image");
+        let submit_btn = document.getElementById("submit_btn_multi");
+
+        submit_btn.addEventListener("click", () => {
+            const form_data = new FormData();
+
+            let files = images.files;
+
+            for (let i=0;i<files.length();i++) {
+                form_data.append("image", files[i]);
+            }
+
+            form_data.append("title", titles.value);
+
+            // ajax 이용해 전송
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/upload/multi", true);
+            xhr.send(form_data);
+            xhr.addEventListener("load", () => {
+                let result = JSON.parse(xhr.responseText);
+                alert(result.result);
+            });
+        })
+    </script>
+</body>
+
+</html>
