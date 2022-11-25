@@ -1,0 +1,13 @@
+<form method="post" id="update_form" enctype="multipart/form-data">
+    ID : <input type="text" name="id" id="id"> <br>
+    이름 : <input type="text" name="name" id="name"> <br>
+    출신 : <input type="text" name="region" id="region"> <br>
+    설명 : <input type="text" name="description" id="description"> <br>
+    새로운 이미지 : <input type="file" name="pictureurl" id="pictureurl"> <br>
+
+    <!-- 새로운 이미지 선택하지 않는다면 기존의 이미지 그대로 삽입 -->
+    이전 이미지<img width=1000 id="picture"> <br>
+    <input type="hidden" name="oldpictureurl" id="oldpictureurl"> <br>
+
+    <input type="submit" value="수정" name="update_btn" id="update_btn">
+</form>

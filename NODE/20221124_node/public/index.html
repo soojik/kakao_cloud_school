@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Node - Maria DB</title>
     <link rel="stylesheet" href="/css/common.css">
-    
+
 </head>
 
 <body>
     <h1>Maria DB</h1>
     <input type="button" value="전체 데이터 가져오기" id="get_all_data_btn">
-    
+    <input type="button" value="일부 데이터 가져오기" id="get_list_btn">
+    <input type="button" value="데이터 삽입" id="insert_btn">
+
     <!-- 데이터 출력 영역 -->
     <div id="content"></div>
 
@@ -30,14 +32,15 @@
                 // JSON 문자열 확인
                 let data = JSON.parse(request.responseText);
 
+                let display = '';
                 if (data.result === true) {
-                    let display = "<div align='center' class='body'>";
+                    display += "<div align='center' class='body'>";
                     display += "<h2>아티스트 목록</h2>";
                     display += "<table border = '1'>";
                     display += "<tr class='header'>";
                     display += "<th align='center' width='80'>ID</th>";
                     display += "<th align='center' width='340'>이름</th>"
-                    display += "<th align='center' width='140'>주소</th>"
+                    display += "<th align='center' width='140'>출신</th>"
                     display += "</tr>";
 
                     // list 키에 있는 데이터 가져오기
@@ -45,12 +48,12 @@
 
                     for (let artist of arr) {
                         display += "<tr class='record'>";
-                        display += "<td align='center'>" + artist.ID + "</td>";
-                        display += "<td align='left'>" + artist.NAME + "</td>";
-                        display += "<td align='right'>" + artist.REGION + "</td>";
+                        display += "<td align='center'>" + artist.id + "</td>";
+                        display += "<td align='center'>" + artist.name + "</td>";
+                        display += "<td align='center'>" + artist.region + "</td>";
                         display += "</tr>";
                     }
-                    
+
                     display += "</table>";
                     display += "</div>";
 
@@ -60,6 +63,238 @@
                 }
             })
         });
+
+        let get_list_btn = document.getElementById("get_list_btn");
+
+        let page = 1;
+        get_list_btn.addEventListener('click', (e) => {
+            let request = new XMLHttpRequest();
+
+            request.open('GET', '/artists/list?page=' + page);
+            request.send('');
+            request.addEventListener('load', (e) => {
+                content.innerHTML = '';
+                let data = JSON.parse(request.responseText);
+
+                if (data.result === true) {
+                    let count = data.count;
+                    let list = data.list;
+                    // 데이터 갯수와 목록 가져오기
+                    let display = "<div align='center' class='body'>";
+                    display += "<h2>아티스트 목록</h2>";
+                    display += "<table border = '1' id='tbldata'>";
+
+                    display += "<tr><td colspan='3' align='right'>전체 데이터 개수:" +
+                        count + "";
+                    display += "<tr class='header'>";
+                    display += "<th align='center' width='80'>ID</th>";
+                    display += "<th align='center' width='340'>이름</th>"
+                    display += "<th align='center' width='140'>출신</th>"
+                    display += "</tr>";
+
+                    for (let artist of list) {
+                        display += "<tr class='record'>";
+                        display += "<td align='center'>" + artist.id + "</td>";
+                        // 상세 보기를 위해 aritist+artist.id 추가해 id 생성
+                        display += "<td align='center'>" +
+                            "<a href='#' id='artist" + artist.id + "'>" + artist.name + "</a>" + "</td>";
+                        display += "<td align='center'>" + artist.region + "</td>";
+                        display += "</tr>";
+                    }
+
+                    display += "</table>";
+                    display += "</div>";
+
+                    content.innerHTML += display;
+                    // 더보기 구현
+                    // 현재 페이지가 마지막 페이지가 아닐때만 출력
+                    display = "";
+                    if (((page - 1) * 3) < count) {
+                        display += "<div align='center' class='body' id='tblbtn'>";
+                        display += "<tr id='tblbtn'><td colspan='3' align='center'>";
+                        display += "<span id='addbtn'><a href='#'>더보기</span></td>";
+                        display += "</tr></table>";
+                    }
+
+                    content.innerHTML += display;
+
+                    let addbtn = document.getElementById('addbtn');
+                    if (addbtn != undefined) {
+                        addbtn.addEventListener('click', (e) => {
+                            page += 1;
+                            let request = new XMLHttpRequest();
+                            request.open('GET', '/artists/list?page=' + page);
+                            request.send('');
+                            if ((page) * 3 >= count) {
+                                page -= 1;
+                                document.getElementById('tblbtn').remove();
+                            }
+
+                            request.addEventListener('load', () => {
+                                let data = JSON.parse(request.responseText);
+                                let list = data.list;
+
+                                const table = document.getElementById('tbldata');
+                                let display = '';
+
+                                for (let artist of list) {
+                                    display += "<tr class='record'>";
+                                    display += "<td align='center'>" + artist.id + "</td>";
+                                    display += "<td align='center'>" +
+                                        "<a href='#' id='artist" + artist.id + "'>" + artist.name + "</a>" + "</td>";
+                                    display += "<td align='center'>" + artist.region + "</td>";
+                                    display += "</tr>";
+                                }
+
+                                table.innerHTML += display;
+                            })
+                        })
+                    }
+                } else {
+                    content.innerHTML = '<p>데이터 가져오기 실패</p>';
+                }
+
+                // 링크 하나 당 이벤트 처리하는 건 자원 낭비
+                // 부모에 이벤트 처리 코드 작성
+                content.addEventListener('click', (e) => {
+                    // 클릭한 대상의 id가 artist로 시작하느 경우만 동작
+                    if (e.target.id.startsWith('artist')) {
+                        // 클릭한 대상의 아이디에서 artist을 제외한 부분 - artist
+                        let artist_id = e.target.id.substring(6).trim();
+
+                        let request = new XMLHttpRequest();
+                        request.open('GET', '/artists/detail/' + artist_id);
+                        request.send('');
+                        request.addEventListener('load', () => {
+                            let data = JSON.parse(request.responseText);
+                            if (data.result == true) {
+                                let artist = data.data;
+
+                                let display = '';
+                                display += "<div align='center' class='body'>";
+                                display += "<h2>상세보기<h2>";
+                                display += "<table border='1'>";
+                                display += "<tr><td><img width=1000 src='/img/" + artist.pictureurl + "'/><td></tr>";
+
+                                display += "<tr class='header'>";
+                                display += "<th align='center' width='80'>이름</th>";
+                                display += "<th align='center' width='340'>출신</th>"
+                                display += "<th align='center' width='140'>기타</th>"
+                                display += "</tr>";
+
+                                display += "<tr height= class='record'>";
+                                display += "<td width='80' align='center'>" + artist.name + "</td>";
+                                display += "<td width='80' align='center'>" + artist.region + "</td>";
+                                display += "<td width='80' align='center'>" + artist.description + "</td>";
+                                display += "</tr>"
+
+                                display += "</table>";
+
+                                display += "<tr><td colspan='2' align='center' width='240'>";
+                                display += "<input type='button' value='데이터 삭제' id='delete_btn' name='delete_btn'></td ></tr > ";
+                                display += "<input type='button' value='데이터 수정' id='update_btn' name='update_btn'></td ></tr > ";
+
+                                content.innerHTML = display;
+
+                                let update_btn = document.getElementById('update_btn');
+
+                                if (update_btn) {
+                                    update_btn.addEventListener('click', (e) => {
+                                        let request = new XMLHttpRequest();
+
+                                        request.open('get', '/artists/update');
+                                        request.send('');
+                                        request.addEventListener('load', (e) => {
+                                            let html = request.responseText;
+
+                                            content.innerHTML = html;
+                                        })
+                                    })
+                                }
+
+                                let delete_btn = document.getElementById('delete_btn');
+
+                                if (delete_btn) {
+                                    delete_btn.addEventListener('click', (e) => {
+                                        let params = 'id=' + artist.id;
+
+                                        let request = new XMLHttpRequest();
+                                        request.open('post', '/artists/delete', true);
+                                        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                        request.send(params);
+
+                                        request.addEventListener('load', (e) => {
+                                            let data = JSON.parse(request.responseText);
+
+                                            if (!data.result) {
+                                                alert('삭제 실패');
+                                            } else {
+                                                alert('삭제 성공');
+                                                document.getElementById("get_all_data_btn").click();
+                                            }
+                                        })
+                                    })
+                                }
+                            } else {
+                                alert(false);
+                            }
+                        })
+                    }
+                })
+
+            });
+        });
+
+
+        let insert_btn = document.getElementById("insert_btn");
+
+        insert_btn.addEventListener('click', (e) => {
+            content.innerHTML = '';
+
+            let html =
+                `
+                <div>
+                <p></p>
+                <form method="post" id="insertform" enctype="multipart/form-data">
+                아티스트 이름<input type="text" name="name" id="name"/><br />
+                출신지<input type="text" name="region" id="region"/><br />
+                설명<input type="text" name="description" id="description"/><br />
+                이미지<input type="file" name="pictureurl" id="pictureurl"/><br />
+                <input type="submit" value="삽입"/>
+                </form>
+                </div>
+                `
+            content.innerHTML = html;
+
+            // 폼 안에서의 submit 버튼 클릭했을 때 이벤트 처리
+            let form = document.getElementById('insertform');
+
+            if (form != undefined) {
+                form.addEventListener('submit', (e) => {
+                    // 기본 이벤트 제거
+                    e.preventDefault();
+
+                    // 폼에 입력한 데이터 전송
+                    const form_data = new FormData(form);
+
+                    let request = new XMLHttpRequest();
+                    request.open('post', '/artists/insert', true);
+                    request.send(form_data);
+
+                    request.addEventListener('load', (e) => {
+                        let data = JSON.parse(request.responseText);
+
+                        if (!data.result) {
+                            alert("삽입 실패");
+                        } else {
+                            document.getElementById("get_all_data_btn").click();
+                        }
+                    })
+                })
+            }
+        });
+
+
     </script>
 </body>
 
