@@ -98,7 +98,23 @@ connection.connect((error) => {
         console.log(error);
         throw error;
     }
-})
+});
+
+// sequelize 를 이용한 데이터베이스 연결
+// require 할 때 디렉토리 이름 기재하면 디렉토리 안에 index.js 내용 import
+const { sequelize } = require('./models');
+const { artists } = require('./models');
+const Artist = require('./models/artist');
+
+sequelize.sync({ force: false })
+    .then(() => {
+        // 연결에 성공했을 때
+        console.log("DB 연결 성공");
+    })
+    .catch((err) => {
+        // 연결 실패
+        console.log("DB 연결 실패");
+    });
 
 // 기본 요청 처리
 app.get('/', (req, res) => {
@@ -106,7 +122,7 @@ app.get('/', (req, res) => {
 });
 
 // 데이터 전체 가져오기 처리
-app.get('/artists/all', (req, res) => {
+app.get('/artists/all', async (req, res) => {
     // HTML 출력 : res.sendFile(파일 경로)
     // 서버의 데이터 출력 못함 - ajax 나 fetch api 사용
 
@@ -119,23 +135,31 @@ app.get('/artists/all', (req, res) => {
     // connection.query('sql', [], (err, results, fields) => {})
 
     // 2개 이상의 데이터 조회할 때는 정렬 필수
-    connection.query('SELECT * FROM ARTISTS ORDER BY id', (err, results, fields) => {
-        if (err) {
-            // 에러 발생한 경우
-            // 주의할 점***
-            // 에러가 발생했다고 데이터 전송하지 않으면 안된다.
-            res.json({ 'result': false });
-        } else {
-            // 정상 응답한 경우
-            res.json({ 'result': true, 'list': results });
-        }
-    })
+    // connection.query('SELECT * FROM artists ORDER BY id', (err, results, fields) => {
+    //     if (err) {
+    //         // 에러 발생한 경우
+    //         // 주의할 점***
+    //         // 에러가 발생했다고 데이터 전송하지 않으면 안된다.
+    //         res.json({ 'result': false });
+    //     } else {
+    //         // 정상 응답한 경우
+    //         res.json({ 'result': true, 'list': results });
+    //     }
+    // })
+
+    try {
+        let list = await Artist.findAll();
+        res.json({ 'result': true, 'list': list });
+    } catch (err) {
+        console.log(err);
+        res.json({ 'result': false });
+    }
 })
 
 // 데이터 일부분 가져오기
 // URL - /artists/list
 // parameter - page (값이 undefined라면 첫페이지로 간주해 1로 설정)
-app.get('/artists/list/', (req, res) => {
+app.get('/artists/list/', async (req, res) => {
     let page = req.query.page;
 
     if (!page) {
@@ -151,52 +175,78 @@ app.get('/artists/list/', (req, res) => {
     // 성공했을 때 데이터 저장하기 위한
     let list;
     // 데이터 목록 가져오기
-    connection.query(
-        "SELECT * FROM ARTISTS ORDER BY id LIMIT ?, 3",
-        [(page - 1) * 3], (err, results, fields) => {
-            if (err) {
-                console.log(err);
-                result = false;
-            } else {
-                list = results;
+    // connection.query(
+    //     "SELECT * FROM artists ORDER BY id LIMIT ?, 3",
+    //     [(page - 1) * 3], (err, results, fields) => {
+    //         if (err) {
+    //             console.log(err);
+    //             result = false;
+    //         } else {
+    //             list = results;
 
-                // 비동기로 실행되기 때문에 count가 먼저 나와버리면 0 리턴하게 되므로
-                let cnt;
-                connection.query("SELECT COUNT(*) CNT FROM ARTISTS", (err, results, fields) => {
-                    if (err) {
-                        console.log(err);
-                        result = false;
-                    } else {
-                        cnt = results[0].CNT;
-                    }
+    //             // 비동기로 실행되기 때문에 count가 먼저 나와버리면 0 리턴하게 되므로
+    //             let cnt;
+    //             connection.query("SELECT COUNT(*) CNT FROM artists", (err, results, fields) => {
+    //                 if (err) {
+    //                     console.log(err);
+    //                     result = false;
+    //                 } else {
+    //                     cnt = results[0].CNT;
+    //                 }
 
-                    if (result === false) {
-                        res.json({ 'result': false });
-                    } else {
-                        res.json({ 'result': true, 'list': list, 'count': cnt });
-                    }
-                });
+    //                 if (result === false) {
+    //                     res.json({ 'result': false });
+    //                 } else {
+    //                     res.json({ 'result': true, 'list': list, 'count': cnt });
+    //                 }
+    //             });
 
 
-            }
-        }
-    );
+    //         }
+    //     }
+    // );
+
+    try {
+        let cnt = await Artist.count();
+        //페이지 단위로 데이터 목록 가져오기
+        let list = await Artist.findAll({
+            offset:(parseInt(page)-1)*3,
+            limit:3
+        });
+
+        res.json({'result':true, 'list':list, 'count':cnt});
+    } catch (err) {
+        console.log(err);
+        res.json({ 'result': false });
+    }
 
 });
 
 // 상세보기 처리 위한 코드
-app.get('/artists/detail/:ID', (req, res) => {
+app.get('/artists/detail/:ID', async (req, res) => {
     //파라미터 읽기
     let id = req.params.ID;
     //id 를 이용해서 1개의 데이터를 찾아오기
-    connection.query("SELECT * FROM ARTISTS WHERE ID=?", [id], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-            res.json({ 'result': false });
-        } else {
-            res.json({ 'result': true, 'data': results[0] });
-        }
-    });
+    // connection.query("SELECT * FROM artists WHERE ID=?", [id], (err, results, fields) => {
+    //     if (err) {
+    //         console.log(err);
+    //         res.json({ 'result': false });
+    //     } else {
+    //         res.json({ 'result': true, 'data': results[0] });
+    //     }
+    // });
+
+    try {
+        let data = await Artist.findOne({
+            where:{
+                id:id
+            }
+        })
+        res.json({'result':true, 'data':data});
+    } catch(err) {
+        console.log(err);
+        res.json({'result':false});
+    }
 });
 
 app.get('/artists/img/:pictureurl', (req, res) => {
@@ -244,7 +294,7 @@ const getTime = () => {
     return hour + ':' + minute + ':' + second;
 }
 
-app.post('/artists/insert', upload.single('pictureurl'), (req, res) => {
+app.post('/artists/insert', upload.single('pictureurl'), async (req, res) => {
     const name = req.body.name;
     const description = req.body.description;
     const region = req.body.region;
@@ -256,49 +306,84 @@ app.post('/artists/insert', upload.single('pictureurl'), (req, res) => {
         pictureurl = 'default.jpg';
     }
 
-    connection.query('select max(id) max_id from ARTISTS', (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        } else {
-            let id;
-            if (results.length > 0) {
-                id = results[0].max_id + 1;
-            } else {
-                id = 1;
-            }
+    let id = 1;
+    try {
+        let x = await Artist.max('id');
+        id = x + 1;
+    } catch (err) {
+        console.log(err);
+    }
 
-            connection.query('insert into ARTISTS(id, name, region, pictureurl, description, updatedate) values (?, ?, ?, ?, ?, ?)',
-                [id, name, region, pictureurl, description, getDate()], (err, results, fields) => {
-                    if (err) {
-                        console.log(err);
-                        res.json({'result':false});
-                    } else {
-                        const writeStream = fs.createWriteStream('./update.txt');
-                        writeStream.write(getTime());
-                        writeStream.end();
-                        
-                        res.json({'result':true});
-                    }
-                });
-        }
+    Artist.create({
+        //속성과 값만 주면 돼
+        id: id,
+        name: name,
+        region: region,
+        description: description,
+        pictureurl: pictureurl,
+        updatedate: getDate()
     });
+
+    const writeStream = fs.createWriteStream('./update.txt');
+    writeStream.write(getTime());
+    writeStream.end();
+
+    res.json({ 'result': true });
+
+    // connection.query('select max(id) max_id from artists', (err, results, fields) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         let id;
+    //         if (results.length > 0) {
+    //             id = results[0].max_id + 1;
+    //         } else {
+    //             id = 1;
+    //         }
+
+    //         connection.query('insert into artists(id, name, region, pictureurl, description, updatedate) values (?, ?, ?, ?, ?, ?)',
+    //             [id, name, region, pictureurl, description, getDate()], (err, results, fields) => {
+    //                 if (err) {
+    //                     console.log(err);
+    //                     res.json({'result':false});
+    //                 } else {
+    //                     const writeStream = fs.createWriteStream('./update.txt');
+    //                     writeStream.write(getTime());
+    //                     writeStream.end();
+
+    //                     res.json({'result':true});
+    //                 }
+    //             });
+    //     }
+    // });
+
 });
 
-app.post('/artists/delete', (req, res) => {
+app.post('/artists/delete', async(req, res) => {
     let id = req.body.id;
 
-    connection.query('delete from ARTISTS where id = ?', [id], (err, results, fields) => {
-        if (err) {
-            console.log(err);
-            res.json({'result':false});
-        } else {
-            const writeStream = fs.createWriteStream('./update.txt');
-            writeStream.write(getTime());
-            writeStream.end();
+    // connection.query('delete from artists where id = ?', [id], (err, results, fields) => {
+    //     if (err) {
+    //         console.log(err);
+    //         res.json({ 'result': false });
+    //     } else {
+    //         const writeStream = fs.createWriteStream('./update.txt');
+    //         writeStream.write(getTime());
+    //         writeStream.end();
 
-            res.json({'result':true});
-        }
-    });
+    //         res.json({ 'result': true });
+    //     }
+    // });
+
+    try {
+        await Artist.destroy({
+            where:{id:id}
+        })
+        res.json({'result':true});
+    } catch(err) {
+        console.log(err);
+        res.json({'result':false});
+    }
 });
 
 // 폼 데이터 읽어 수정
@@ -308,6 +393,58 @@ app.get('/artists/update', (req, res) => {
         res.end(data);
     })
 });
+
+app.post('/artists/update', upload.single('pictureurl'), async (req, res) => {
+    const id = req.body.id;
+    const name = req.body.name;
+    const description = req.body.description;
+    const region = req.body.region;
+
+    const oldpictureurl = req.body.oldpictureurl;
+
+    console.log(id + " " + name + " " + description + " " + region);
+
+    let pictureurl;
+    if (req.file) {
+        pictureurl = req.file.filename;
+    } else {
+        pictureurl = oldpictureurl;
+    }
+
+    // connection.query('update artists set name=?, region=?, description=?, pictureurl=?, updatedate=? where id=?', [name, region, description, pictureurl, getDate(), id], (e, results, fields) => {
+    //     if (e) {
+    //         console.log(e);
+    //         res.json({ 'result': false });
+    //     } else {
+    //         const writeStream = fs.createWriteStream('./update.txt');
+    //         writeStream.write(getTime());
+    //         writeStream.end();
+    //         res.json({ 'result': true });
+    //     }
+    // });
+
+    try {
+        await Artist.update({
+            name:name,
+            region:region,
+            description:description,
+            pictureurl:pictureurl,
+            updatedate:getDate()
+        }, {where : {id:id}})
+        res.json({'result':true});
+    } catch(err) {
+        console.log(err);
+        res.json({'result':false});
+    }
+
+});
+
+app.get('/artists/updatedate', (req, res) => {
+    fs.readFile('./update.txt', (err, data) => {
+        res.json({ 'result': data.toString() });
+    })
+})
+
 
 app.use((err, req, res, next) => {
     console.log(err);
