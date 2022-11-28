@@ -8,8 +8,7 @@ module.exports = class User extends Sequelize.Model{
             name:{
                 type:Sequelize.STRING(20),
                 allowNull:false,
-                unique:true,
-                primaryKey:true
+                unique:true
             },
             age:{
                 type:Sequelize.INTEGER,
@@ -31,6 +30,6 @@ module.exports = class User extends Sequelize.Model{
     static associate(db){
         // 외래키 즉, 관계에 대한 설정
         // 내 id와 commenter 를 연동시키되, 1:n 으로 hasMany
-        db.User.hasMany(db.Comment, {foreignKey:'commenter', sourceKey:'id'});
+        db.user.hasMany(db.comment, {foreignKey:'commenter', sourceKey:'id'});
     }
 }

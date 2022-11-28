@@ -24,7 +24,7 @@ module.exports = class Comment extends Sequelize.Model{
 
     static associate(db){
         // 외래키 즉, 관계에 대한 설정
-        db.Comment.belongsTo(db.User,
+        db.comment.belongsTo(db.user,
             {foreignKey:'commenter', targetKey:'id'});
     }
 }
