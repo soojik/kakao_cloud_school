@@ -187,7 +187,7 @@ app.post('/artist/insert', upload.single('pictureurl'), (req, res) => {
 
 
 // 에러 처리 위한 코드
-app.use((err, res, req, next) => {
+app.use((err, req, res, next) => {
     console.log(err);
     res.status(500).send(err.message);
 })
