@@ -101,6 +101,14 @@ app.use('/', pageRouter);
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 
+// post 관련 라우터 설정
+const postRouter = require('./routes/post');
+app.use('/post', postRouter);
+
+// follow, user 라우터 연결
+const userRouter = require('./routes/users');
+app.use('/user', userRouter);
+
 //에러가 발생한 경우 처리 - 404
 app.use((req, res, next) => {
     const err = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

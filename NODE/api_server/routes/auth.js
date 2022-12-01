@@ -44,6 +44,8 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
 // 로그인 처리
 router.post('/login', isNotLoggedIn, async (req, res, next) => {
 
+    console.log('login post');
+
     passport.authenticate('local', (authError, user, info) => {
         if (authError) {
             console.log(authError);
