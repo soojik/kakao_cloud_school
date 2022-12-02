@@ -42,7 +42,7 @@ router.post('/', isLoggedIn, upload2.none(), async(req, res, next) => {
         const post_ = await post.create({
             content:req.body.content,
             img:req.body.url,
-            userId:req.user.id
+            UserId:req.user.id
         })
         // 해시태그 찾기 - # 으로 시작하는 모두 문자열 찾기
         const hashtags = req.body.content.match(/#[^\s#]*/g);

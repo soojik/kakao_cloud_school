@@ -25,7 +25,7 @@ router.get('/', async (req, res, next) => {
 router.post('/domain', isLoggedIn, async (req, res, next) => {
     try {
         await domain.create({
-            userId: req.user.id,
+            UserId: req.user.id,
             host: req.body.host,
             type: req.body.type,
             clientSecret: uuidv4(),

@@ -36,7 +36,7 @@ module.exports = class User extends Sequelize.Model {
             timestamps: true,
             // 이름에 _ 넣을 것인지
             underscored: false,
-            modelName: 'User',
+            modelName: 'user',
             // 실제 만들어지는 table 이름
             tableName: 'snsuser',
             // 삭제에 관한
