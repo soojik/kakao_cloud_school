@@ -12,8 +12,8 @@ class App extends Component {
     <StateComponent></StateComponent>
     <EventPractice></EventPractice>
     <ValidationSample></ValidationSample>
-    <ScrollBox ref={(ref) => this.ScrollBox = ref}></ScrollBox>
-    <button onClick={() => this.ScrollBox.scrollToBottom()}>맨 아래로</button>
+    <ScrollBox ref={(ref) => this.box = ref}></ScrollBox>
+    <button onClick={() => this.box.scrollToBottom()}>맨 아래로</button>
     </>);
   }
 }

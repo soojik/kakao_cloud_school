@@ -16,14 +16,6 @@ class ScrollBox extends Component {
             background: 'linear-gradient(white, black)'
         }
 
-        // 스크롤 박스의 스크롤을 맨 아래로 이동시키는 메서드
-        let scrollToBottom = () => {
-            const { scrollHeight, clientHeight } = this.box;
-
-            // 스크롤 제일 아래로 이동
-            this.box.scrollTop = scrollHeight - clientHeight;
-        };
-        
 
         return (
             <div style={style}
@@ -34,6 +26,16 @@ class ScrollBox extends Component {
             </div >
         );
     }
+
+
+    // 스크롤 박스의 스크롤을 맨 아래로 이동시키는 메서드
+    scrollToBottom = () => {
+        const { scrollHeight, clientHeight } = this.box;
+
+        // 스크롤 제일 아래로 이동
+        this.box.scrollTop = scrollHeight - clientHeight;
+    };
+
 }
 
 export default ScrollBox;
