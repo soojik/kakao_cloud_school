@@ -4,6 +4,7 @@ import ErrorBoundary from "./ErrorBoundary";
 import InputSample from "./InputSample";
 import UserList from "./UserList";
 import CreateUser from "./CreateUser";
+import Average from "./Average";
 
 class ClassState extends Component {
 
@@ -103,7 +104,6 @@ const countActiveUser = users => {
   return users.filter(user => user.active).length;
 }
 
-
 const App = () => {
 
   // 그냥 배열의 데이터를 수정하면 화면 랜더링이 안되기 때문에
@@ -175,6 +175,8 @@ const App = () => {
     <br /><br />
     <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     <p>현재 활성화된 유저 수 : {count_active_user}</p>
+
+    <Average></Average>
   </>)
 }
 

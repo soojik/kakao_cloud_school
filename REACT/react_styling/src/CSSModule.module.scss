@@ -1,0 +1,24 @@
+/* 파일 안에서만 사용하는 클래스 */
+.wrapper {
+    background-color: darkcyan;
+    padding: 1em;
+    color: blanchedalmond;
+    font-size: 2rem;
+    font-weight: 500;
+
+    /* &를 붙임으로써 wrapper와 inverted가 모두 있는 경우에만 적용하도록 */
+    &.inverted {
+        color: coral;
+        background-color: cornsilk;
+        border: 1px solid grey;
+    }
+}
+
+
+/* 모든 곳에서 사용할 수 있는 클래스 - 이름 수정하지 않음*/
+:global {
+    .something {
+        font-weight: 800;
+        color: crimson;
+    }
+}

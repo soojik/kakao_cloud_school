@@ -1,0 +1,46 @@
+@import '../../styles/util.scss';
+
+.button {
+    background-color: $oc-orange-0;
+    color: $oc-red-7;
+    transition: all .2s ease-in;
+
+    display: inline-block;
+
+    padding: 2rem;
+
+    text-align: center;
+
+    position: fixed;
+
+    font-size: 2rem;
+    font-weight: 600;
+
+    border-radius: 3px;
+    cursor: pointer;
+
+    @include place-at-center();
+
+    width: 1200px;
+
+    @include media('<huge') {
+        width: 1024px;
+    }
+
+    @include media('<large') {
+        width: 768px;
+    }
+
+    @include media('<medium') {
+        width: 90%;
+    }
+
+    &:hover {
+        background-color: $oc-orange-1;
+    }
+
+    &:active {
+        margin-top: 3px;
+        background-color: $oc-orange-2;
+    }
+}

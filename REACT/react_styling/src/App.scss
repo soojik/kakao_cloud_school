@@ -1,0 +1,37 @@
+@import './styles/util.scss';
+
+.box {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid orange;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include place-at-center();
+
+    &.beige {
+        background-color: antiquewhite;
+    }
+
+    &.blue {
+        background-color: lightblue;
+    }
+
+    &:hover {
+        background-color: cadetblue;
+    }
+
+    &:active {
+        background-color: salmon;
+    }
+
+    // box의 자식
+    .box-inside {
+        background-color: crimson;
+        width: 50px;
+        height: 50px;
+    }
+}
