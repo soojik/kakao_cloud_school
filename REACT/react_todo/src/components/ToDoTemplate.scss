@@ -1,0 +1,25 @@
+.ToDoTemplate {
+    width: 512px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    .app-title {
+        background: #f6f5f0;
+        color: #506f84;
+        height: 5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content {
+        background-color: ghostwhite;
+        font-weight: 500;
+    }
+}
