@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1553b60b-4c64-4bb6-8709-9bec0c4d3ce2" name="Changes" comment="" />
+    <list default="true" id="1553b60b-4c64-4bb6-8709-9bec0c4d3ce2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/project01/kakao/soo/nestedclass/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/project01/kakao/soo/nestedclass/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kakao/soo/nestedclass/InstanceInner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kakao/soo/nestedclass/InstanceInner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kakao/soo/nestedclass/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kakao/soo/nestedclass/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -26,6 +44,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -34,7 +53,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -42,7 +61,46 @@
       <recent name="$PROJECT_DIR$/src/kakao/soo" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.kakao.soo.oop.Main">
+  <component name="RunManager" selected="Application.ExceptionHandling03">
+    <configuration name="ExceptionHandling01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.ExceptionHandling01" />
+      <module name="project01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExceptionHandling02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.ExceptionHandling02" />
+      <module name="project01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExceptionHandling03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.ExceptionHandling03" />
+      <module name="project01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kakao.soo.nestedclass.Main" />
       <module name="project01" />
@@ -56,12 +114,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="kakao.soo.oop.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.oop.Main" />
+    <configuration name="kakao.soo.exceptionHandling.DebuggingMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.DebuggingMain" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kakao.soo.oop.*" />
+          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -71,7 +129,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.kakao.soo.oop.Main" />
+        <item itemvalue="Application.ExceptionHandling03" />
+        <item itemvalue="Application.ExceptionHandling02" />
+        <item itemvalue="Application.ExceptionHandling01" />
+        <item itemvalue="Application.kakao.soo.exceptionHandling.DebuggingMain" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -85,7 +146,7 @@
       <option name="presentableId" value="Default" />
       <updated>1671411179578</updated>
       <workItem from="1671411180714" duration="393000" />
-      <workItem from="1671411577393" duration="413000" />
+      <workItem from="1671411577393" duration="16361000" />
     </task>
     <servers />
   </component>
@@ -107,5 +168,40 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/kakao/soo/exceptionHandling/DebuggingMain.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/kakao/soo/exceptionHandling/DebuggingMain.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/kakao/soo/exceptionHandling/DebuggingMain.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/kakao/soo/exceptionHandling/DebuggingMain.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/kakao/soo/exceptionHandling/DebuggingMain.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
