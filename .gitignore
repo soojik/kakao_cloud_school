@@ -1,8 +1,6 @@
+node_modules
 .env
-node_modules/
-node_mysql/
-Coding-Test-Study
-DDudu-Todo
+.idea/workspace.xml
 out
 .DS_Store
 workspace.xml

@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1553b60b-4c64-4bb6-8709-9bec0c4d3ce2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/kakao/soo/java/lang/Generic.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,13 +57,13 @@
       <recent name="$PROJECT_DIR$/src/kakao/soo" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.kakao.soo.java.lang.Main">
-    <configuration name="ExceptionHandling01" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.ExceptionHandling01" />
+  <component name="RunManager" selected="Application.MapMain">
+    <configuration name="MapClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.MapClass" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
+          <option name="PATTERN" value="kakao.soo.java.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -70,12 +71,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExceptionHandling02" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.ExceptionHandling02" />
+    <configuration name="MapMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.MapMain" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
+          <option name="PATTERN" value="kakao.soo.java.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -83,12 +84,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExceptionHandling03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.ExceptionHandling03" />
+    <configuration name="QueueClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.QueueClass" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
+          <option name="PATTERN" value="kakao.soo.java.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -96,12 +97,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="kakao.soo.exceptionHandling.DebuggingMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.exceptionHandling.DebuggingMain" />
+    <configuration name="SetClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.SetClass" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kakao.soo.exceptionHandling.*" />
+          <option name="PATTERN" value="kakao.soo.java.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,12 +110,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="kakao.soo.java.lang.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.lang.Main" />
+    <configuration name="StackClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.StackClass" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="kakao.soo.java.lang.*" />
+          <option name="PATTERN" value="kakao.soo.java.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -124,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.kakao.soo.java.lang.Main" />
-        <item itemvalue="Application.ExceptionHandling03" />
-        <item itemvalue="Application.ExceptionHandling02" />
-        <item itemvalue="Application.ExceptionHandling01" />
-        <item itemvalue="Application.kakao.soo.exceptionHandling.DebuggingMain" />
+        <item itemvalue="Application.MapMain" />
+        <item itemvalue="Application.MapClass" />
+        <item itemvalue="Application.SetClass" />
+        <item itemvalue="Application.QueueClass" />
+        <item itemvalue="Application.StackClass" />
       </list>
     </recent_temporary>
   </component>
@@ -144,6 +145,8 @@
       <workItem from="1671411577393" duration="17139000" />
       <workItem from="1671494611576" duration="8532000" />
       <workItem from="1671516676670" duration="1891000" />
+      <workItem from="1671539942805" duration="597000" />
+      <workItem from="1671581350496" duration="14587000" />
     </task>
     <servers />
   </component>
