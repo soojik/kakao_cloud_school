@@ -9,7 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1553b60b-4c64-4bb6-8709-9bec0c4d3ce2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kakao/soo/java/lang/Generic.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +41,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/soo/Desktop/develop/KakaoCloudSchool/kakao_cloud_school/JAVA/project01&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -57,9 +57,9 @@
       <recent name="$PROJECT_DIR$/src/kakao/soo" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MapMain">
-    <configuration name="MapClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.MapClass" />
+  <component name="RunManager" selected="Application.SemaphoreMain">
+    <configuration name="MutexMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.MutexMain" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
@@ -71,8 +71,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MapMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.MapMain" />
+    <configuration name="ProducerConsumerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.ProducerConsumerMain" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
@@ -84,8 +84,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QueueClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.QueueClass" />
+    <configuration name="SemaphoreMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.SemaphoreMain" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
@@ -97,8 +97,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SetClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.SetClass" />
+    <configuration name="ThreadCreateMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.ThreadCreateMain" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
@@ -110,8 +110,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StackClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.StackClass" />
+    <configuration name="ThreadMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kakao.soo.java.util.ThreadMain" />
       <module name="project01" />
       <extension name="coverage">
         <pattern>
@@ -125,11 +125,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MapMain" />
-        <item itemvalue="Application.MapClass" />
-        <item itemvalue="Application.SetClass" />
-        <item itemvalue="Application.QueueClass" />
-        <item itemvalue="Application.StackClass" />
+        <item itemvalue="Application.SemaphoreMain" />
+        <item itemvalue="Application.ProducerConsumerMain" />
+        <item itemvalue="Application.MutexMain" />
+        <item itemvalue="Application.ThreadMain" />
+        <item itemvalue="Application.ThreadCreateMain" />
       </list>
     </recent_temporary>
   </component>
@@ -147,6 +147,9 @@
       <workItem from="1671516676670" duration="1891000" />
       <workItem from="1671539942805" duration="597000" />
       <workItem from="1671581350496" duration="14587000" />
+      <workItem from="1671668196466" duration="3000" />
+      <workItem from="1671668216362" duration="13502000" />
+      <workItem from="1671691386088" duration="4189000" />
     </task>
     <servers />
   </component>
