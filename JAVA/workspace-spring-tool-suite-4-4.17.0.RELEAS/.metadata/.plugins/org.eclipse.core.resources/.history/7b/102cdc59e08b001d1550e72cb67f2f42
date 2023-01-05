@@ -1,0 +1,17 @@
+package di.persistence;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class GoodRepository {
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
+	public int insertGood(Good good) {
+		return sqlSession.insert("insertGood", good);
+	}
+
+}

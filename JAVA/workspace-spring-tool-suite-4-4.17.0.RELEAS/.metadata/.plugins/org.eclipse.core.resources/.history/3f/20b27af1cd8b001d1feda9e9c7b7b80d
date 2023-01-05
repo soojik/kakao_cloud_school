@@ -1,0 +1,6 @@
+
+public class DBTest {
+	
+	// @Test 어노테이션이 붙은 메서드가 테스트 메서드
+
+}

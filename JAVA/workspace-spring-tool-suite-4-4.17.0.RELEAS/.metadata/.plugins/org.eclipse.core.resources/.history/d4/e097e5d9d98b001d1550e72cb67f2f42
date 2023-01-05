@@ -1,0 +1,23 @@
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import di.controller.MemberController;
+
+public class DIMain {
+
+	public static void main(String[] args) {
+
+		try(GenericXmlApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml")) {
+			SqlSessionFactory sqlFactory = context.getBean("sqlSessionFactory", SqlSessionFactory.class);
+			System.out.println(sqlFactory);
+			/* controller 가져오기
+			MemberController controller = context.getBean("memberController", MemberController.class);
+			controller.findById("1");
+			*/
+		} catch (Exception e) {
+			System.out.println(e.getLocalizedMessage());
+		}
+
+	}
+
+}

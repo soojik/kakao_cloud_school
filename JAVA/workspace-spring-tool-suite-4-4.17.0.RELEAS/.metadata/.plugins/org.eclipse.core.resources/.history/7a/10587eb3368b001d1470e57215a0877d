@@ -1,0 +1,5 @@
+package di.dto;
+
+public class MemberDTO {
+
+}

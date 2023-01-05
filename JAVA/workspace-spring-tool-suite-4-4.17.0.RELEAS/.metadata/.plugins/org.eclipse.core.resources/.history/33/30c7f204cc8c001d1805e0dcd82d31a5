@@ -1,0 +1,20 @@
+package com.kakao.school.domain;
+
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ItemEntity {
+	
+	private int itemId;
+	private String itemName;
+	private int price;
+	private String description;
+	private String pictureurl;
+
+}

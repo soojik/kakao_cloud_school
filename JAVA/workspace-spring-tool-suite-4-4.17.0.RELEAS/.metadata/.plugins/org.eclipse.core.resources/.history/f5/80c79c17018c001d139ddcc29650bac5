@@ -1,0 +1,35 @@
+package di.persistence;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+@Repository
+public class TransactionRepository {
+	
+	@Autowired
+	private SimpleJdbcInsert template;
+	
+	// 중간에 예외가 발생하면 모든 작업이 Rollback
+	@Transactional
+	public void insert() {
+		template.withTableName("goods");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("code", 101);
+		map.put("name", "사과");
+		map.put("manufacture", "안동");
+		map.put("price", 1500);
+
+		template.execute(map);
+		
+		/* 기본키 중복으로 예외 발생
+		template.execute(map);
+		*/
+	}
+
+}

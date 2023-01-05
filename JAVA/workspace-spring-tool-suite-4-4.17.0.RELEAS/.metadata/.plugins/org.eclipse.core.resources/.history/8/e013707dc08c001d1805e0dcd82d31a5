@@ -1,0 +1,5 @@
+package com.kakao.school.dto;
+
+public class ItemDTO {
+
+}

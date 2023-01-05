@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:c="http://www.springframework.org/schema/c"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- <bean id="memberRepository"
+		class="di.persistence.MemberRepositoryImpl">
+	</bean>
+	
+	<bean id="memberService"
+		class="di.service.MemberServiceImpl">
+	</bean>
+	
+	<bean id="memberController"
+		class="di.controller.MemberController">
+	</bean> -->
+	
+	<!-- 어노테이션을 이용한 설정을 사용할 수 있도록 해주는 것-->
+	<context:annotation-config />
+	
+	<!-- di 패키지에 어노테이션 추가된 클래스의 bean을 자동 생성해주는 설정으로 spring boot에서는 프로젝트 만들 때
+	설정한 패키지 이름이 자동으로 설정된다. -->
+	<context:component-scan base-package="di"></context:component-scan>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>net.sf.log4jdbc.sql.jdbcapi.DriverSpy</value>
+		</property>
+		<property name="url">
+			<value>jdbc:log4jdbc:mariadb//localhost:3307/KCS</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>toor</value>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.jdbc.core.simple.SimpleJdbcInsert" id="simpleJdbcInsert">
+		<constructor-arg name="dataSource" ref="dataSource"></constructor-arg>
+	</bean>
+	
+	<!-- 
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
+		<property name="mapperLocations" value="classpath:mybatis/mappers/good.xml"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	-->
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+      <property name="basePackage" 
+      value="di.persistence" />
+   </bean>
+   
+   <!-- mybatis에서 트랜잭션을 사용하기 위한 매니저 클래스의 bean-->
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	   <property name="dataSource" ref="dataSource"></property>
+   </bean>
+
+</beans>

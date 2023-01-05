@@ -1,0 +1,5 @@
+package di.persistence;
+
+public class GoodRepository {
+
+}
