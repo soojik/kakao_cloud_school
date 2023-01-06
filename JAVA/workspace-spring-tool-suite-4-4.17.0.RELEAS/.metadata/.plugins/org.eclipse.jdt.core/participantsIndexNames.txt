@@ -1,5 +1,0 @@
-INDEX VERSION 1.131
-/Users/soo/Documents/workspace-spring-tool-suite-4-4.17.0.RELEASE/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/510602047.index
-/springmvc/src/main/java
-/Users/soo/Documents/workspace-spring-tool-suite-4-4.17.0.RELEASE/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1234903321.index
-/springmvc/src/main/java

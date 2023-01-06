@@ -1,5 +1,0 @@
-package di.persistence;
-
-public interface GoodMapper {
-
-}

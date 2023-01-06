@@ -1,6 +1,0 @@
-package com.kakao.school.domain;
-
-public class Command {
-	private String name;
-	private String passwd;
-}

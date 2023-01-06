@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+/Users/soo/Desktop/develop/KakaoCloudSchool/kakao_cloud_school/JAVA/workspace-spring-tool-suite-4-4.17.0.RELEAS/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-511073321.index
-2013656100.index
-1843575792.index
-25981260.index
-3399895980.index

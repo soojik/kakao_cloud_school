@@ -1,5 +1,0 @@
-package com.kakao.school.persistence;
-
-public interface ItemMapper {
-
-}
