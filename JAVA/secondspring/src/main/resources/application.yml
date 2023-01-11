@@ -1,0 +1,22 @@
+server:
+  port: 80
+
+# Entity 가지고 table 만들지 여부 설정
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.0.7:1521:xe
+    username: system
+    password: oracle
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: trace

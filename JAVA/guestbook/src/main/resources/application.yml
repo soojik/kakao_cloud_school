@@ -1,0 +1,26 @@
+# 기본 포트 80으로 설정
+server:
+  port: 80
+
+# DB 연결/접속 정보
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3307/KCS
+    username: root
+    password: toor
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true # hibernate query 포맷을 정리
+    show-sql: true # hibernate query를 콘솔에 출력
+  thymeleaf:
+    cache: false # 뷰를 캐싱하지 않도록
+
+# sql을 작성할 때 ?로 작성한 것을 추적
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: trace
