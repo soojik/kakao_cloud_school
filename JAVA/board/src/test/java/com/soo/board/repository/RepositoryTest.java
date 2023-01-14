@@ -37,7 +37,7 @@ public class RepositoryTest {
     public void insertMember() {
         for (int i = 0; i < 100; i++) {
             Member member = Member.builder()
-                    .email("soo" + i +"@kakao.com")
+                    .email("soo" + i + "@kakao.com")
                     .passwd("1234")
                     .name("지수")
                     .build();
@@ -50,7 +50,7 @@ public class RepositoryTest {
     public void insertBoard() {
         for (int i = 0; i < 100; i++) {
             Member member = Member.builder()
-                    .email("soo" + i +"@kakao.com")
+                    .email("soo" + i + "@kakao.com")
                     .build();
             Board board = Board.builder()
                     .title("제목 ... " + i)
@@ -64,7 +64,7 @@ public class RepositoryTest {
 
     @Test
     public void insertReply() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 1; i <= 300; i++) {
             long bno = (long) (Math.random() * 100 + 1);
 
             Board board = Board.builder()
@@ -101,7 +101,7 @@ public class RepositoryTest {
     // 댓글 1개 가져오는 메서드
     @Test
     public void readReply() {
-        Optional<Reply> result = replyRepository.findById(103L);
+        Optional<Reply> result = replyRepository.findById(5L);
 
         Reply reply = result.get();
 
@@ -158,5 +158,35 @@ public class RepositoryTest {
             LOGGER.info("reply count : " + replyCnt);
         }
     }
+
+    @Test
+    public void testSearch01() {
+        boardRepository.search01();
+    }
+
+    @Test
+    public void testeSearch() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending()
+                .and(Sort.by("title").ascending()));
+
+        String keyword = "수정";
+
+        // 제목에 keyword가 들어가는 데이터 조회
+        Page<Object[]> result = boardRepository.searchPage("t", keyword, pageable);
+
+        for (Object[] row : result.getContent()) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+
+    @Test
+    public void testListReply() {
+        List<Reply> replyList = replyRepository.findByBoardOrderByRno(Board.builder().bno(27L).build());
+
+        replyList.forEach(reply -> {
+            System.out.println(reply);
+        });
+    }
+
 
 }

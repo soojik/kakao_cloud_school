@@ -42,7 +42,7 @@ public class ServiceTest {
 
     @Test
     public void 게시글_삭제() {
-        boardService.removeWithReplies(260L);
+        boardService.removeWithReplies(50L);
     }
 
     @Test

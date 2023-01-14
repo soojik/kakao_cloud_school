@@ -5,11 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface BoardRepository extends JpaRepository<Board, Long> {
+@Repository
+public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository {
 
     // 글 번호를 가지고 데이터를 찾아오는 메서드 - 상세보기
     @Query("select b, w, count(r) from Board b " + "left join b.writer w " + "left outer join Reply r on r.board = b " + "where b.bno = :bno")

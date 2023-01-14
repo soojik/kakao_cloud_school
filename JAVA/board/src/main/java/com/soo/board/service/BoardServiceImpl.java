@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -46,7 +47,19 @@ public class BoardServiceImpl implements BoardService {
                 entityToDTO((Board) entity[0], (Member) entity[1], (Long) entity[2])
         );
 
+        /* 검색 적용 안된 목록 보기 요청 처리
         Page<Object[]> result = boardRepository.getBoardWithReplyCount(requestDTO.getPageable(Sort.by("bno").descending()));
+
+         */
+
+        Page<Object[]> result = boardRepository.searchPage(
+                requestDTO.getType(),
+                requestDTO.getKeyword(),
+                requestDTO.getPageable(Sort.by("bno").ascending()));
+
+        for (Object[] obj : result.getContent()) {
+            log.info(Arrays.toString(obj));
+        }
 
         return new PageResponseDTO<>(result, fn);
     }
@@ -55,6 +68,7 @@ public class BoardServiceImpl implements BoardService {
     public BoardDTO get(Long bno) {
         Object result = boardRepository.getBoardByBno(bno);
         Object[] arr = (Object[]) result;
+        log.info("arr: " + Arrays.toString(arr));
 
         return entityToDTO((Board) arr[0], (Member) arr[1], (Long) arr[2]);
     }
@@ -92,10 +106,11 @@ public class BoardServiceImpl implements BoardService {
     public long register(BoardDTO dto) {
         log.info("Service: " + dto);
 
-        Board board = dtoToEntity(dto);
-        boardRepository.save(board);
+        Board board = boardRepository.save(dtoToEntity(dto));
+
+        // ** error log!
+        // 나같은 경우는 바로 bno가 동기화가 안됐어서 save하고 따로 반환된 값을 저장해줘야 올바른 bno를 받아올 수 있었다.
         return board.getBno();
     }
-
 
 }

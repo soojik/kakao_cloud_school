@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <h1 class="mt-4">게시물 상세 보기</h1>
+
+        <form action="/board/modify" method="post" id="form">
+            <!-- 실제로 서버로 넘어가는 데이터이지만 눈에는 보이지 않는 데이터 -->
+            <input type="hidden" name="page" id="page" th:value="${requestDTO.page}"/>
+            <input type="hidden" name="type" id="type" th:value="${requestDTO.type}"/>
+            <input type="hidden" name="keyword" id="keyword" th:value="${requestDTO.keyword}"/>
+
+        <!-- 수정할 수 있도록 하는 항목에 대해서는 readonly 설정을 뺀다. -->
+        <div class="form-group">
+            <label>글 번호</label>
+            <input class="form-control" name="bno" readonly
+                   th:value="${dto.bno}" type="text"/>
+        </div>
+        <div class="form-group">
+            <label>제목</label>
+            <input class="form-control" name="title"
+                   th:value="${dto.title}" type="text"/>
+        </div>
+        <div class="form-group">
+            <label>내용</label>
+            <textarea class="form-control" name="content" rows="5">
+                [[${dto.content}]]
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label>작성자</label>
+            <input class="form-control" name="writer" readonly
+                   th:value="${dto.writerName}" type="text"/>
+        </div>
+        <div class="form-group">
+            <label>작성일</label>
+            <input class="form-control" name="regDate" readonly
+                   th:value="${dto.regDate}" type="text"/>
+        </div>
+        <div class="form-group">
+            <label>수정일</label>
+            <input class="form-control" name="modDate" readonly
+                   th:value="${dto.modDate}" type="text"/>
+        </div>
+
+        </form>
+
+        <a th:href="@{/board/list(page=${requestDTO.page}, type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
+            <button class="btn btn-info" type="button">목록</button>
+        </a>
+
+        <button type="button" class="btn btn-primary" id="modifyBtn">수정</button>
+        <button type="button" class="btn btn-warning" id="removeBtn">삭제</button>
+
+        <script th:inline="javascript">
+            <!-- form에서 id가져오기 -->
+            let actionForm = document.getElementById("form");
+
+            document.getElementById("modifyBtn").addEventListener("click", (e) => {
+                    if (!confirm("수정하시겠습니까?")) {
+                        return;
+                    }
+
+                    actionForm.action = "/board/modify";
+                    actionForm.method = "post";
+                    actionForm.submit();
+                }
+            )
+
+            document.getElementById("removeBtn").addEventListener("click", (e) => {
+                    if (!confirm("삭제하시겠습니까?")) {
+                        return;
+                    }
+
+                    actionForm.action = "/board/remove";
+                    actionForm.method = "post";
+                    actionForm.submit();
+                }
+            )
+        </script>
+
+    </th:block>
+</th:block>
