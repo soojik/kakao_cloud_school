@@ -1,5 +1,6 @@
 package com.soo.board.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Board extends BaseEntity {
 
     // 처음부터 가져오지 않고 사용할 때 가져온다.
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Member writer;
 
     // title 수정하는 메서드

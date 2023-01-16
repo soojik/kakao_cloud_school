@@ -1,10 +1,8 @@
 package com.soo.board.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.soo.board.domain.Board;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 
@@ -18,6 +16,7 @@ public class ReplyDTO {
     private String text;
     private String replyer;
 
+    @JsonIgnore
     private Board board;
 
     private Long bno;

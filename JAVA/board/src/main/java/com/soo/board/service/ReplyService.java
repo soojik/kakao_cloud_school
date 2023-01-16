@@ -4,12 +4,14 @@ import com.soo.board.domain.Board;
 import com.soo.board.domain.Reply;
 import com.soo.board.dto.ReplyDTO;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface ReplyService {
 
     Long register(ReplyDTO dto);
 
+    @Transactional
     List<ReplyDTO> getList(Long bno);
 
     Long modify(ReplyDTO dto);

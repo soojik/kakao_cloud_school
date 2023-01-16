@@ -1,5 +1,6 @@
 package com.soo.board.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,5 +22,6 @@ public class Reply extends BaseEntity {
     private String replyer;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Board board;
 }
