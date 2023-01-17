@@ -11,8 +11,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
@@ -106,5 +109,41 @@ public class RepositoryTest {
         for (Object[] obj : result.getContent()) {
             System.out.println(Arrays.toString(obj));
         }
+    }
+
+    @Test
+    public void 영화번호로_가져오기() {
+        List<Object[]> list = movieRepository.getMovieWithAll(3L);
+
+        for (Object[] obj : list) {
+            System.out.println(Arrays.toString(obj));
+        }
+    }
+
+    @Test
+    @Transactional
+    public void getReview() {
+        Movie movie = Movie.builder()
+                .mno(96L)
+                .build();
+
+        List<Review> result = reviewRepository.findByMovie(movie);
+        result.forEach(review -> {
+            System.out.println("rno: " + review.getRno());
+            System.out.println("reviewer's email: " + review.getMember().getEmail());
+        });
+    }
+
+    @Test
+    // 지우려는 98번의 리뷰가 여러개일 수 있기 때문에 에러
+    // No EntityManager with actual transaction available for current thread - cannot reliably process 'remove' call - transaction 처리가 필요
+    @Transactional
+    @Commit
+    public void deleteByMember() {
+        Member member = Member.builder()
+                .mid(98L)
+                .build();
+
+        reviewRepository.deleteByMember(member);
     }
 }
