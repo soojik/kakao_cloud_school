@@ -1,0 +1,22 @@
+server:
+  port: 80
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3307/KCS
+    username: root
+    password: toor
+  servlet:
+    multipart:
+      enabled: true
+      location: /Users/soo/Documents/data
+      max-file-size: 10MB
+      max-request-size: 30MB
+
+  thymeleaf:
+    cache: false

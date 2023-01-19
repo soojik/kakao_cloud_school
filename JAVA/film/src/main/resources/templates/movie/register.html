@@ -18,10 +18,66 @@
                 <label class="custom-file-label" data-browse="Browse"></label>
             </div>
 
-            <button type="submit" class="btn btn-info">등록</button>
+            <button type="submit" class="btn btn-primary">등록</button>
         </form>
 
+        <div class="uploadResult">
+            <ul>
+
+            </ul>
+        </div>
+
+
+        <style>
+            .uploadResult {
+                width:100%;
+                background-color:gray;
+                margin-top:10px;
+            }
+
+            .uploadResult ul{
+                display: flex;
+                flex-flow: row;
+                justify-content: center;
+                align-items: center;
+                vertical-align: top;
+            }
+
+            .uploadResult ul li {
+                list-style: none;
+                padding: 10px;
+                margin-left: 2em;
+            }
+
+            .uploadResult ul li img{
+                width: 100px;
+            }
+        </style>
+
         <script th:inline="javascript">
+            // 이미지 업로드 결과를 받아서 출력해주는 함수
+            let showResult = (uploadResultArr) => {
+                // 출력할 영역
+                let uploadURL = $('.uploadResult ul');
+                let str = "";
+
+                $(uploadResultArr).each(function (i, obj) {
+                    str += `<li data-name='${obj.fileName}'
+                                data-path='${obj.uploadPath}'
+                                data-uuid='${obj.uuid}'>
+                            <div>
+                            <button type="button" data-file='${obj.imageURL}'
+                                    class="btn-warning btn-sm">X</button>
+                            <br >
+                            <img src='/display?filename=${obj.thumbnailURL}' />
+                            </div>
+                            </li>`
+
+                    console.log(str);
+                    uploadURL.append(str);
+                });
+            }
+
             $(document).ready(function (e) {
                 // . 다음에 exe, sh, zip, alz, tiff로 끝나면
                 let regex = new RegExp("(.*?)\.(exe|sh|zip|alz|tiff)$");
@@ -43,6 +99,7 @@
                     return true;
                 }
 
+                // 파일 선택하고 업로드하는 메서드
                 $(".custom-file-input").on('change', function () {
                     // 파일의 이름 추출
                     let fileName = $(this).val().split("\\").pop();
@@ -86,11 +143,55 @@
                         dataType: 'JSON',
                         success: function (result) {
                             console.log(result);
+                            showResult(result);
                         },
                         error: function (jqXHR, textstatus, errorThrown) {
                             console.log(textstatus);
                         },
                     })
+                });
+
+                // 이미지 위의 삭제 버튼 눌렀을 때
+                // 이미지 출력 후 나타나는 버튼이기 때문에
+                // 문법 확인하는 컴파일 시점에는 li button의 존재를 알 수 없기 때문에 (동적으로 생성)
+                // 버튼에 직접 클릭 이벤트처리를 하는 것이 아니라 uploadResult 안에 있는 버튼이라고 명시해줘야 한다.
+                $('.uploadResult').on('click', 'li button', function () {
+                    // data-file의 값 가져오기
+                    let targetFile = $(this).data("file");
+                    // 자신을 포함하고 있는 Li 태그 가져오기
+                    let targetLi = $(this).closest("li");
+
+                    $.ajax({
+                        url: '/removefile',
+                        data: {fileName: targetFile},
+                        type: 'post',
+                        success: function (result) {
+                            alert(result);
+                            targetLi.remove();
+                        },
+                    })
+                });
+
+                // 등록 버튼 누를 때의 이벤트 처리
+                $('.btn-primary').click(function (e) {
+                    e.preventDefault();
+                    let str = "";
+                    if($(".uploadResult li").length > 3){
+                        alert("3개의 이미지만 첨부가 가능합니다.");
+                        return;
+                    }
+                    $(".uploadResult li").each(function(i,obj){
+                        let target = $(obj);
+                        let imsi = 'imageDTOList[' + i + '].imgName';
+                        str += "<input type='hidden' " + "name=\'" + imsi + "\' " +  "value=\'" + target.data('name') +"\'>";
+                        imsi = 'imageDTOList[' + i + '].path';
+                        str += "<input type='hidden' " + "name=\'" + imsi + "\' " +  "value=\'" + target.data('path') +"\'>";
+                        imsi = 'imageDTOList[' + i + '].uuid';
+                        str += "<input type='hidden' " + "name=\'" + imsi + "\' " +  "value=\'" + target.data('uuid') +"\'>";
+                    });
+                    //태그들이 추가된 것을 확인한 후에 comment를 제거
+                    $("form").append(str).submit();
+
                 });
             });
         </script>
